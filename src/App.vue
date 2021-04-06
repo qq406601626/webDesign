@@ -1,5 +1,5 @@
 <template>
-
+  <router-view></router-view>
 </template>
 
 <script >
@@ -7,8 +7,7 @@
 This starter template is using Vue 3 experimental <script setup> SFCs
 Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md*/
 export default {
-  components: {
-  },
+  components: {},
   computed: {},
   data() {
     return {};
@@ -19,7 +18,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
