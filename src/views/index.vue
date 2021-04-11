@@ -1,7 +1,7 @@
 <template>
-  <el-container>
-    <el-header>
-      <el-row type="flex" align="center" justify="space-between">
+  <el-container class="container">
+    <el-header class="header">
+      <el-row type="flex" align="center" justify="space-between" style="height: 100%">
         <div class="logo"></div>
         <div class="design-type"></div>
         <el-space :size="20">
@@ -12,10 +12,10 @@
       </el-row>
     </el-header>
     <el-container>
-      <el-aside width="auto">
+      <el-aside class="aside" width="96px">
         <router-view name="aside"></router-view>
       </el-aside>
-      <el-main>
+      <el-main class="main">
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -27,14 +27,30 @@ import {defineComponent} from 'vue'
 
 export default defineComponent({
   data() {
-    return {
-    }
+    return {}
   },
-  methods: {
-
-  }
+  methods: {}
 });
 </script>
 
 <style lang="scss" scoped>
+.container {
+  height: 100vh;
+
+  .header {
+    background: rgb(62, 63, 65);
+    border-bottom: 1px solid rgba(0, 0, 0, .95);
+  }
+
+  .aside {
+    background: rgb(62, 63, 65);
+    border-right: 1px solid rgba(0, 0, 0, .95);
+    padding: 60px 0;
+  }
+
+  .main {
+    background: rgb(76, 76, 76);
+  }
+}
+
 </style>
