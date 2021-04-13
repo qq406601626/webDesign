@@ -1,11 +1,9 @@
 import {createStore} from 'vuex'
-import PC from './pc'
+import modules from './modules'
 
 const storeOptions = {
     strict: true,
-    modules: {
-        PC
-    }
+    modules
 }
 const store = createStore(storeOptions)
-export {store, storeOptions}
+export default store
