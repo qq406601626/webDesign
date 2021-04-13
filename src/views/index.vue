@@ -16,6 +16,7 @@
         <router-view name="aside"></router-view>
       </el-aside>
       <el-main class="main">
+        {{ PC.name }}
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -29,7 +30,10 @@ export default defineComponent({
   data() {
     return {}
   },
-  methods: {}
+  methods: {},
+  async mounted() {
+    await this.PC.dispatch('fetchName')
+  }
 });
 </script>
 
