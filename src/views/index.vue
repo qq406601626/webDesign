@@ -51,6 +51,8 @@ export default defineComponent({
     background: rgb(62, 63, 65);
     border-right: 1px solid rgba(0, 0, 0, 0.95);
     padding: 60px 0;
+    position: relative;
+    overflow: visible;
   }
 
   .main {

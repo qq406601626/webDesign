@@ -1,7 +1,8 @@
 <template>
-  <div :class="{ 'aside-module': true, active }" @click="$emit('click',module)">
+  <div :class="{ 'aside-module': true, active }">
     <div :class="[`el-icon-${module.iconName}`]"></div>
     <div class="label">{{ module.label }}</div>
+    <slot></slot>
   </div>
 </template>
 
