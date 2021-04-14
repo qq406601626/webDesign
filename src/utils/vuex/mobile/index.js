@@ -1,7 +1,7 @@
 export default {
     namespaced: true,
     state: {
-        name: 'pc module'
+        name: 'mobile module'
     },
     getters: {
         getName(state) {
@@ -17,7 +17,7 @@ export default {
         async fetchName({commit}) {
             const name = await new Promise(r => {
                 setTimeout(() => {
-                    commit('setName', 'xxxxxxxxxxxxxxxxx')
+                    commit('setName', 'wwwwwwwwwwww')
                     r()
                 }, 3000)
             })
