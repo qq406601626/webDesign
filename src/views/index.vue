@@ -1,7 +1,12 @@
 <template>
   <el-container class="container">
     <el-header class="header">
-      <el-row type="flex" align="center" justify="space-between" style="height: 100%">
+      <el-row
+        type="flex"
+        align="center"
+        justify="space-between"
+        style="height: 100%"
+      >
         <div class="logo"></div>
         <div class="design-type"></div>
         <el-space :size="20">
@@ -16,7 +21,6 @@
         <router-view name="aside"></router-view>
       </el-aside>
       <el-main class="main">
-        {{ PC.name }}
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -24,16 +28,13 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import { defineComponent } from "vue";
+// 把vnode里的children渲染到页面
 
 export default defineComponent({
-  data() {
-    return {}
-  },
+  setup() {},
   methods: {},
-  async mounted() {
-    await this.PC.dispatch('fetchName')
-  }
+  mounted() {},
 });
 </script>
 
@@ -43,12 +44,12 @@ export default defineComponent({
 
   .header {
     background: rgb(62, 63, 65);
-    border-bottom: 1px solid rgba(0, 0, 0, .95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.95);
   }
 
   .aside {
     background: rgb(62, 63, 65);
-    border-right: 1px solid rgba(0, 0, 0, .95);
+    border-right: 1px solid rgba(0, 0, 0, 0.95);
     padding: 60px 0;
   }
 
@@ -56,5 +57,4 @@ export default defineComponent({
     background: rgb(76, 76, 76);
   }
 }
-
 </style>

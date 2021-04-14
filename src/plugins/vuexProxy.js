@@ -30,3 +30,4 @@ const proxyInstance = (app,store) => {
     })
     app.config.globalProperties.foo='bar'
 }
+export default proxyInstance
