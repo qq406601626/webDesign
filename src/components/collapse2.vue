@@ -28,6 +28,7 @@ export default defineComponent({
         enter(el) {
           el.dataset.oldOverflow = el.style.overflow
           if (el.scrollWidth !== 0) {
+            console.dir(el)
             el.style.width = el.scrollWidth + 'px'
             el.style.paddingLeft = el.dataset.oldPaddingLeft
             el.style.paddingRight = el.dataset.oldPaddingRight
