@@ -1,16 +1,13 @@
 <template>
-  <div class="theme-container">
-    <div style="width: 340px;">1111222222222</div>
-  </div>
+  <div class="aaaaa">11111111111111111</div>
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  setup() {
-  },
-  methods: {}
+  setup() {},
+  methods: {},
 });
 </script>
 

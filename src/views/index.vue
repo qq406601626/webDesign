@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref, reactive, isReactive } from "vue";
 // 把vnode里的children渲染到页面
 
 export default defineComponent({
