@@ -67,8 +67,9 @@ export default defineComponent({
   position: absolute;
   left: 100%;
   top: 0;
+  margin-left: 1px;
   z-index: 2;
-  background: red;
+  background: rgb(62,63,65);
 
   .aside-content-component {
     width: 340px;

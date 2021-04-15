@@ -11,10 +11,9 @@ class ThemeLayoutClass {
     static rightContent = 2
     static leftContent = 3
     iconBaseUrl = '/src/views/pc/asideComponents/img/'
-
     constructor(value, icon) {
         this.value = value
-        this.icon = `${this.iconBaseUrl}/icon`
+        this.icon = `${this.iconBaseUrl}/${icon}`
     }
 }
 

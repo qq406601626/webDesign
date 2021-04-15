@@ -53,6 +53,7 @@ export default defineComponent({
     padding: 60px 0;
     position: relative;
     overflow: visible;
+    box-sizing: border-box;
   }
 
   .main {
