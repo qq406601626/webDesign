@@ -4,7 +4,7 @@
     <el-row type="flex" align="middle">
       <el-col :span="4">布局</el-col>
       <el-col :span="20">
-        <el-space :size="20">
+        <el-space :size="20" style="font-size: 0">
           <el-button round size="mini" type="primary">全部</el-button>
           <img v-for="(img,index) in layoutData.list" :key="index" :src="img.icon" alt="" @click="">
         </el-space>
