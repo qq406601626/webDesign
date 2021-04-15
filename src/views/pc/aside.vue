@@ -15,7 +15,7 @@
       v-if="currentSelectModule.asideModule.component"
       class="aside-collapse-content"
     >
-      <component :is="currentSelectModule.asideModule.component"></component>
+      <component :is="currentSelectModule.asideModule.component" style="width:340px"></component>
     </div>
   </collapse>
 </template>
@@ -63,7 +63,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .aside-collapse-content {
-  width: 340px;
   height: 100%;
   position: absolute;
   left: 100%;

@@ -1,7 +1,5 @@
 <template>
-  <div class="background-img-container">
-    <div style="width: 340px">background-img</div>
-  </div>
+  <div class="background-img-container"></div>
 </template>
 
 <script>
@@ -15,5 +13,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

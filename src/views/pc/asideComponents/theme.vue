@@ -1,5 +1,5 @@
 <template>
-  <div class="aaaaa">11111111111111111</div>
+  <div class="theme-container"></div>
 </template>
 
 <script>
@@ -11,6 +11,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
