@@ -1,32 +1,32 @@
 <template>
   <aside-module-wrap>
     <aside-module
-      v-for="(module, index) in asideModuleList"
-      :key="index"
-      :module="module"
-      :active="currentSelectModule.asideModule === module"
-      @click="currentSelectModule.asideModule = module"
+        v-for="(module, index) in asideModuleList"
+        :key="index"
+        :module="module"
+        :active="currentSelectModule.asideModule === module"
+        @click="currentSelectModule.asideModule = module"
     >
     </aside-module>
   </aside-module-wrap>
   <el-button @click="print">change</el-button>
-  <collapse :width="340">
+  <collapse>
     <div
-      v-if="currentSelectModule.asideModule.component"
-      class="aside-collapse-content"
+        v-if="currentSelectModule.asideModule.component"
+        class="aside-content-wrap"
     >
-      <component :is="currentSelectModule.asideModule.component"></component>
+      <component :is="currentSelectModule.asideModule.component" class="aside-content-component"></component>
     </div>
   </collapse>
 </template>
 
 <script>
-import { defineComponent, ref, reactive, markRaw } from "vue";
+import {defineComponent, reactive, markRaw} from "vue";
 import Collapse from "@/components/collapse.vue";
 import Theme from "./asideComponents/theme.vue";
 import Elements from "./asideComponents/elements.vue";
 import BackgroundImg from "./asideComponents/backgroundImg.vue";
-import { AsideClass } from "@/scripts";
+import {AsideClass} from "@/scripts";
 import AsideModuleWrap from "../commonComponents/asideModuleWrap.vue";
 import AsideModule from "../commonComponents/asideModule.vue";
 
@@ -46,7 +46,7 @@ export default defineComponent({
       new AsideClass("背景图片", "star-on", markRaw(BackgroundImg)),
     ];
     const originSelectModule = new AsideClass("", "", null);
-    let currentSelectModule = reactive({ asideModule: originSelectModule });
+    let currentSelectModule = reactive({asideModule: originSelectModule});
     return {
       asideModuleList,
       originSelectModule,
@@ -62,13 +62,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.aside-collapse-content {
+.aside-content-wrap {
   height: 100%;
   position: absolute;
   left: 100%;
   top: 0;
   z-index: 2;
   background: red;
-  overflow: hidden;
+
+  .aside-content-component {
+    width: 340px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 }
 </style>
