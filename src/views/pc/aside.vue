@@ -10,12 +10,12 @@
     </aside-module>
   </aside-module-wrap>
   <el-button @click="print">change</el-button>
-  <collapse>
+  <collapse :width="340">
     <div
       v-if="currentSelectModule.asideModule.component"
       class="aside-collapse-content"
     >
-      <component :is="currentSelectModule.asideModule.component" style="width:340px"></component>
+      <component :is="currentSelectModule.asideModule.component"></component>
     </div>
   </collapse>
 </template>
@@ -70,6 +70,5 @@ export default defineComponent({
   z-index: 2;
   background: red;
   overflow: hidden;
-  font-size: 20px;
 }
 </style>
