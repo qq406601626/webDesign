@@ -1,32 +1,33 @@
 <template>
   <aside-module-wrap>
     <aside-module
-        v-for="(module, index) in asideModuleList"
-        :key="index"
-        :module="module"
-        :active="currentSelectModule.asideModule === module"
-        @click="currentSelectModule.asideModule = module"
+      v-for="(module, index) in asideModuleList"
+      :key="index"
+      :module="module"
+      :active="currentSelectModule.asideModule === module"
+      @click="currentSelectModule.asideModule = module"
     >
     </aside-module>
   </aside-module-wrap>
   <el-button @click="print">change</el-button>
-  <collapse>
-    <div
-        v-if="currentSelectModule.asideModule.component"
-        class="aside-content-wrap"
-    >
-      <component :is="currentSelectModule.asideModule.component" class="aside-content-component"></component>
-    </div>
+  <collapse
+    :visible="!!currentSelectModule.asideModule.component"
+    class="aside-content-wrap"
+  >
+    <component
+      :is="currentSelectModule.asideModule.component"
+      class="aside-content-component"
+    ></component>
   </collapse>
 </template>
 
 <script>
-import {defineComponent, reactive, markRaw} from "vue";
+import { defineComponent, reactive, markRaw } from "vue";
 import Collapse from "@/components/collapse.vue";
 import Theme from "./asideComponents/theme.vue";
 import Elements from "./asideComponents/elements.vue";
 import BackgroundImg from "./asideComponents/backgroundImg.vue";
-import {AsideClass} from "@/scripts";
+import { AsideClass } from "@/scripts";
 import AsideModuleWrap from "../commonComponents/asideModuleWrap.vue";
 import AsideModule from "../commonComponents/asideModule.vue";
 
@@ -46,7 +47,7 @@ export default defineComponent({
       new AsideClass("背景图片", "star-on", markRaw(BackgroundImg)),
     ];
     const originSelectModule = new AsideClass("", "", null);
-    let currentSelectModule = reactive({asideModule: originSelectModule});
+    let currentSelectModule = reactive({ asideModule: originSelectModule });
     return {
       asideModuleList,
       originSelectModule,
@@ -69,7 +70,7 @@ export default defineComponent({
   top: 0;
   margin-left: 1px;
   z-index: 2;
-  background: rgb(62,63,65);
+  background: rgb(62, 63, 65);
 
   .aside-content-component {
     width: 340px;
