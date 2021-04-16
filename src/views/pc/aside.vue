@@ -73,7 +73,7 @@ export default defineComponent({
   background: rgb(62, 63, 65);
 
   .aside-content-component {
-    width: 340px;
+    width: 440px;
     padding: 20px;
     box-sizing: border-box;
   }

@@ -1,72 +1,87 @@
 <template>
-  <el-space direction="vertical" alignment="stretch" :size="20" class="theme-container">
+  <el-space
+    direction="vertical"
+    alignment="stretch"
+    :size="20"
+    class="theme-container"
+  >
     <!--布局-->
     <el-row type="flex" align="middle">
       <el-col :span="4">布局</el-col>
       <el-col :span="20">
-        <el-space :size="20" style="font-size: 0">
-          <el-button round size="mini" type="primary">全部</el-button>
-          <img v-for="(img,index) in layoutData.list" :key="index" :src="img.icon" alt="" @click="">
-        </el-space>
-      </el-col>
-    </el-row>
-    <el-row type="flex" align="middle">
-      <el-col :span="4">分类</el-col>
-      <el-col :span="20">
-        <el-row type="flex" :gutter="20">
-          <el-col :span="6" style="text-align: center;">
-            <el-button round size="mini" type="primary">全部</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">默认</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">年会</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">节日</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">商务</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">校园</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">婚礼婚庆</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">商务促销</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">派对</el-button>
-          </el-col>
-          <el-col :span="6" style="text-align: center;">
-            <el-button type="text">动漫游戏</el-button>
+        <el-row>
+          <el-col
+            v-for="(img, index) in layoutData.list"
+            :key="index"
+            :span="6"
+            style="font-size: 0"
+          >
+            <img :src="img.icon" alt="" style="padding: 0 15px" />
           </el-col>
         </el-row>
       </el-col>
     </el-row>
+    <!-- 分类 -->
+    <el-row type="flex" align="middle">
+      <el-col :span="4">分类</el-col>
+      <el-col :span="20">
+        <el-row type="flex" :gutter="0">
+          <el-col
+            v-for="(classifyItem, index) in classifyData.list"
+            :key="index"
+            :span="6"
+          >
+            <el-button
+              round
+              size="mini"
+              :type="
+                classifyData.value === classifyItem.value ? 'primary' : 'text'
+              "
+              @click="classifyData.value = classifyItem.value"
+              >{{ classifyItem.label }}</el-button
+            >
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
+    <!-- 分割线 -->
+    <el-divider style="margin:0"></el-divider>
   </el-space>
 </template>
 
 <script>
-import {defineComponent, reactive} from "vue";
-import {ThemeLayoutClass} from "@/scripts";
+import { defineComponent, reactive } from "vue";
+import { ThemeLayoutClass, ThemeClassifyClass } from "@/scripts";
 
 export default defineComponent({
   setup() {
     const layoutData = reactive({
-      value: '',
+      value: "",
       list: [
-        new ThemeLayoutClass(ThemeLayoutClass.fullContent, 'full.png'),
-        new ThemeLayoutClass(ThemeLayoutClass.rightContent, 'rightContent.png'),
-        new ThemeLayoutClass(ThemeLayoutClass.leftContent, 'leftContent.png'),
-      ]
-    })
+        new ThemeLayoutClass(ThemeLayoutClass.FullContent, "full.png"),
+        new ThemeLayoutClass(ThemeLayoutClass.RightContent, "rightContent.png"),
+        new ThemeLayoutClass(ThemeLayoutClass.LeftContent, "leftContent.png"),
+      ],
+    });
+    const classifyData = reactive({
+      value: ThemeClassifyClass.All,
+      list: [
+        new ThemeClassifyClass("全部", ThemeClassifyClass.All),
+        new ThemeClassifyClass("默认", ThemeClassifyClass.Default),
+        new ThemeClassifyClass("年会", ThemeClassifyClass.NianHui),
+        new ThemeClassifyClass("婚礼婚庆", ThemeClassifyClass.HunLiHunQing),
+        new ThemeClassifyClass("节日", ThemeClassifyClass.JieRi),
+        new ThemeClassifyClass("商务", ThemeClassifyClass.ShangWu),
+        new ThemeClassifyClass("校园", ThemeClassifyClass.XiaoYuan),
+        new ThemeClassifyClass("商务促销", ThemeClassifyClass.ShangWuCuXiao),
+        new ThemeClassifyClass("派对", ThemeClassifyClass.PaiDui),
+        new ThemeClassifyClass("动漫游戏", ThemeClassifyClass.DongManYouXi),
+      ],
+    });
     return {
-      layoutData
-    }
+      layoutData,
+      classifyData,
+    };
   },
   methods: {},
 });
