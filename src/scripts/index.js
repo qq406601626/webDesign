@@ -36,10 +36,10 @@ class ThemeClassifyClass {
 }
 /** pc-主题-主题缩略图*/
 class ThemeThumbnailyClass {
-    constructor(name, label, thumbnail, layout, classify = [], isNew = false, isFreeNow = false,) {
+    constructor(name, label, layout, classify = [], isNew = false, isFreeNow = false,) {
         this.name = name
         this.label = label
-        this.thumbnail = `${import.meta.env.VITE_STATIC}/${thumbnail}`
+        this.thumbnail = `${import.meta.env.VITE_STATIC}/theme/${name}/thumbnail.png`
         this.layout = layout
         this.classify = classify
         this.isNew = isNew

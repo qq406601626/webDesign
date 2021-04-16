@@ -74,6 +74,7 @@ export default defineComponent({
 
   .aside-content-component {
     width: 440px;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
   }

@@ -45,13 +45,21 @@
       </el-col>
     </el-row>
     <!-- 分割线 -->
-    <el-divider style="margin:0"></el-divider>
+    <el-divider style="margin: 0"></el-divider>
+    <!-- 缩略图  -->
+    <div style="height: 800px">
+      11111
+    </div>
   </el-space>
 </template>
 
 <script>
 import { defineComponent, reactive } from "vue";
-import { ThemeLayoutClass, ThemeClassifyClass } from "@/scripts";
+import {
+  ThemeLayoutClass,
+  ThemeClassifyClass,
+  ThemeThumbnailyClass,
+} from "@/scripts";
 
 export default defineComponent({
   setup() {
@@ -78,17 +86,161 @@ export default defineComponent({
         new ThemeClassifyClass("动漫游戏", ThemeClassifyClass.DongManYouXi),
       ],
     });
+    const thumbnailyData = reactive({
+      value: "",
+      list: [
+        new ThemeThumbnailyClass(
+          "aidebiaobai",
+          "爱的表白",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "aidehunli",
+          "爱的婚礼",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "changxiangweilai",
+          "唱响未来",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "dianyingrensheng",
+          "电影人生",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+
+        new ThemeThumbnailyClass(
+          "aidebiaobai",
+          "爱的表白",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "aidehunli",
+          "爱的婚礼",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "changxiangweilai",
+          "唱响未来",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "dianyingrensheng",
+          "电影人生",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+
+        new ThemeThumbnailyClass(
+          "aidebiaobai",
+          "爱的表白",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "aidehunli",
+          "爱的婚礼",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "changxiangweilai",
+          "唱响未来",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "dianyingrensheng",
+          "电影人生",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+
+        new ThemeThumbnailyClass(
+          "aidebiaobai",
+          "爱的表白",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "aidehunli",
+          "爱的婚礼",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "changxiangweilai",
+          "唱响未来",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "dianyingrensheng",
+          "电影人生",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+
+        new ThemeThumbnailyClass(
+          "aidebiaobai",
+          "爱的表白",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "aidehunli",
+          "爱的婚礼",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "changxiangweilai",
+          "唱响未来",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+        new ThemeThumbnailyClass(
+          "dianyingrensheng",
+          "电影人生",
+          ThemeLayoutClass.RightContent,
+          [ThemeClassifyClass.HunLiHunQing]
+        ),
+      ],
+    });
     return {
       layoutData,
       classifyData,
+      thumbnailyData,
     };
   },
   methods: {},
 });
 </script>
-
-<style lang="scss" scoped>
+<style lang="scss" >
 .theme-container {
   color: #ffffff;
+  .el-space__item:last-child {
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 12px hsl(0deg 0% 100% / 80%);
+    }
+    &::-webkit-scrollbar-track-piece {
+      background-color: #333;
+    }
+    flex-grow: 1;
+    overflow-y: auto;
+  }
 }
 </style>
