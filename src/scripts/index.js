@@ -23,10 +23,10 @@ class ThemeClassifyClass {
     static Default = 2
     static NianHui = 3
     static JieRi = 4
-    static CaiWu = 5
+    static ShangWu = 5
     static XiaoYuan = 6
     static HunLiHunQing = 7
-    static ShangWuCuXiao = 8
+    static ShangYeCuXiao = 8
     static PaiDui = 9
     static DongManYouXi = 10
     constructor(label, value) {
@@ -39,7 +39,8 @@ class ThemeThumbnailyClass {
     constructor(name, label, layout, classify = [], isNew = false, isFreeNow = false,) {
         this.name = name
         this.label = label
-        this.thumbnail = `${import.meta.env.VITE_STATIC}/theme/${name}/thumbnail.png`
+        // this.thumbnail = `${import.meta.env.VITE_STATIC}/theme/${name}/thumbnail.png`
+        this.thumbnail = `/src/views/pc/asideComponents/img/${name}/thumbnail.png`
         this.layout = layout
         this.classify = classify
         this.isNew = isNew

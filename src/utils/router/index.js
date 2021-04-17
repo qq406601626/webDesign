@@ -19,6 +19,10 @@ const router = createRouter({
                     path: 'mobile',
                     component: () => import('@/views/mobile/index.vue'),
                 },
+                {
+                    path: 'test',
+                    component: () => import('@/views/test.vue'),
+                },
             ]
         },
     ],

@@ -1,9 +1,9 @@
 <template>
   <el-space
-    direction="vertical"
-    alignment="stretch"
-    :size="20"
-    class="theme-container"
+      direction="vertical"
+      alignment="stretch"
+      :size="20"
+      class="theme-container"
   >
     <!--布局-->
     <el-row type="flex" align="middle">
@@ -11,12 +11,14 @@
       <el-col :span="20">
         <el-row>
           <el-col
-            v-for="(img, index) in layoutData.list"
-            :key="index"
-            :span="6"
-            style="font-size: 0"
+              v-for="(layoutItem, index) in layoutData.list"
+              :key="index"
+              :span="6"
+              style="font-size: 0"
           >
-            <img :src="img.icon" alt="" style="padding: 0 15px" />
+            <img @click="layoutData.value = layoutItem.value" :src="layoutItem.icon"
+                 :class="['layout-img',{active:layoutData.value === layoutItem.value}]"
+                 alt=""/>
           </el-col>
         </el-row>
       </el-col>
@@ -27,19 +29,19 @@
       <el-col :span="20">
         <el-row type="flex" :gutter="0">
           <el-col
-            v-for="(classifyItem, index) in classifyData.list"
-            :key="index"
-            :span="6"
+              v-for="(classifyItem, index) in classifyData.list"
+              :key="index"
+              :span="6"
           >
             <el-button
-              round
-              size="mini"
-              :type="
+                round
+                size="mini"
+                :type="
                 classifyData.value === classifyItem.value ? 'primary' : 'text'
               "
-              @click="classifyData.value = classifyItem.value"
-              >{{ classifyItem.label }}</el-button
-            >
+                @click="classifyData.value = classifyItem.value"
+            >{{ classifyItem.label }}
+            </el-button>
           </el-col>
         </el-row>
       </el-col>
@@ -47,14 +49,20 @@
     <!-- 分割线 -->
     <el-divider style="margin: 0"></el-divider>
     <!-- 缩略图  -->
-    <div style="height: 800px">
-      11111
-    </div>
+    <el-row type="flex" style="height: 800px;padding: 0 10px;align-content: flex-start;font-size: 0" :gutter="20">
+      <transition-group name="el-zoom-in-center">
+        <el-col v-for="(thumbnailyItem) in thumbnailyData.thumbnailyList" :key="thumbnailyItem.name" :span="12"
+                style="margin-bottom: 20px">
+          <img :src="thumbnailyItem.thumbnail" alt="" style="width: 100%">
+        </el-col>
+      </transition-group>
+    </el-row>
   </el-space>
+
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
+import {defineComponent, reactive, computed} from "vue";
 import {
   ThemeLayoutClass,
   ThemeClassifyClass,
@@ -64,7 +72,7 @@ import {
 export default defineComponent({
   setup() {
     const layoutData = reactive({
-      value: "",
+      value: ThemeLayoutClass.FullContent,
       list: [
         new ThemeLayoutClass(ThemeLayoutClass.FullContent, "full.png"),
         new ThemeLayoutClass(ThemeLayoutClass.RightContent, "rightContent.png"),
@@ -81,140 +89,26 @@ export default defineComponent({
         new ThemeClassifyClass("节日", ThemeClassifyClass.JieRi),
         new ThemeClassifyClass("商务", ThemeClassifyClass.ShangWu),
         new ThemeClassifyClass("校园", ThemeClassifyClass.XiaoYuan),
-        new ThemeClassifyClass("商务促销", ThemeClassifyClass.ShangWuCuXiao),
+        new ThemeClassifyClass("商业促销", ThemeClassifyClass.ShangYeCuXiao),
         new ThemeClassifyClass("派对", ThemeClassifyClass.PaiDui),
         new ThemeClassifyClass("动漫游戏", ThemeClassifyClass.DongManYouXi),
       ],
     });
     const thumbnailyData = reactive({
-      value: "",
+      value: '',
       list: [
-        new ThemeThumbnailyClass(
-          "aidebiaobai",
-          "爱的表白",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "aidehunli",
-          "爱的婚礼",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "changxiangweilai",
-          "唱响未来",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "dianyingrensheng",
-          "电影人生",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-
-        new ThemeThumbnailyClass(
-          "aidebiaobai",
-          "爱的表白",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "aidehunli",
-          "爱的婚礼",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "changxiangweilai",
-          "唱响未来",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "dianyingrensheng",
-          "电影人生",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-
-        new ThemeThumbnailyClass(
-          "aidebiaobai",
-          "爱的表白",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "aidehunli",
-          "爱的婚礼",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "changxiangweilai",
-          "唱响未来",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "dianyingrensheng",
-          "电影人生",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-
-        new ThemeThumbnailyClass(
-          "aidebiaobai",
-          "爱的表白",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "aidehunli",
-          "爱的婚礼",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "changxiangweilai",
-          "唱响未来",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "dianyingrensheng",
-          "电影人生",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-
-        new ThemeThumbnailyClass(
-          "aidebiaobai",
-          "爱的表白",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "aidehunli",
-          "爱的婚礼",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "changxiangweilai",
-          "唱响未来",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
-        new ThemeThumbnailyClass(
-          "dianyingrensheng",
-          "电影人生",
-          ThemeLayoutClass.RightContent,
-          [ThemeClassifyClass.HunLiHunQing]
-        ),
+        new ThemeThumbnailyClass("niuniandaji", "牛年大吉", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
+        new ThemeThumbnailyClass("aidehunli", "爱的婚礼", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
+        new ThemeThumbnailyClass("zhongguofeng", "中国风", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
       ],
-    });
+      thumbnailyList: computed(() => {
+        return thumbnailyData.list.filter(thumbnailyItem => {
+          const layoutCondition = thumbnailyItem.layout === layoutData.value
+          const classifyCondition = classifyData.value === ThemeClassifyClass.All ? true : thumbnailyItem.classify.includes(classifyData.value)
+          return layoutCondition && classifyCondition
+        })
+      })
+    })
     return {
       layoutData,
       classifyData,
@@ -224,23 +118,39 @@ export default defineComponent({
   methods: {},
 });
 </script>
-<style lang="scss" >
+<style lang="scss">
 .theme-container {
   color: #ffffff;
-  .el-space__item:last-child {
+
+  > .el-space__item:last-child {
     &::-webkit-scrollbar {
       width: 5px;
     }
+
     &::-webkit-scrollbar-thumb {
       border-radius: 5px;
       background: rgba(0, 0, 0, 0.3);
       box-shadow: inset 0 0 12px hsl(0deg 0% 100% / 80%);
     }
+
     &::-webkit-scrollbar-track-piece {
       background-color: #333;
     }
+
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .layout-img {
+    margin: 0 10px;
+    cursor: pointer;
+    transition: border-color 150ms linear;
+    border: 1px solid #ffffff;
+
+    &.active, &:hover {
+      border: 1px solid #409eff;
+    }
   }
 }
 </style>
