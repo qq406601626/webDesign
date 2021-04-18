@@ -51,10 +51,15 @@
     <!-- 缩略图  -->
     <el-row type="flex" style="height: 800px;padding: 0 10px;align-content: flex-start;font-size: 0" :gutter="20">
       <transition-group name="el-zoom-in-center">
-        <el-col v-for="(thumbnailyItem) in thumbnailyData.thumbnailyList" :key="thumbnailyItem.name" :span="12"
-                style="margin-bottom: 20px">
-          <!--          <img :src="thumbnailyItem.thumbnail" alt="" style="width: 100%">-->
-          <theme-thumbnaily :thumbnaily="thumbnailyItem"></theme-thumbnaily>
+        <el-col
+            v-for="(thumbnailyItem) in thumbnailyData.thumbnailyList"
+            :key="thumbnailyItem.name"
+            :span="12"
+            style="margin-bottom: 20px">
+          <theme-thumbnaily
+              :thumbnaily="thumbnailyItem" @click="handlerThumbnailyItemClick(thumbnailyItem)"
+              :active="thumbnailyData.value===thumbnailyItem">
+          </theme-thumbnaily>
         </el-col>
       </transition-group>
     </el-row>
@@ -72,7 +77,7 @@ import {
 import themeThumbnaily from './themeComponents/themeThumbnaily.vue'
 
 export default defineComponent({
-  components:{themeThumbnaily},
+  components: {themeThumbnaily},
   setup() {
     const layoutData = reactive({
       value: ThemeLayoutClass.FullContent,
@@ -118,7 +123,12 @@ export default defineComponent({
       thumbnailyData,
     };
   },
-  methods: {},
+  methods: {
+    handlerThumbnailyItemClick(thumbnailyItem) {
+      this.thumbnailyData.value = thumbnailyItem
+      this.PC.commit('setAsideThumbnailyItem', thumbnailyItem)
+    }
+  },
 });
 </script>
 <style lang="scss">

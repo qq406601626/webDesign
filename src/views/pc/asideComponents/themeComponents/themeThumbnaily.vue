@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-thumbnaily-container">
+  <div :class="['theme-thumbnaily-container',{active}]">
     <img :src="thumbnaily.thumbnail" alt="" class="thumbnaily-img">
     <div class="tag desc-box">
       <div class="label">{{ thumbnaily.label }}</div>
@@ -21,7 +21,8 @@ export default defineComponent({
     thumbnaily: {
       type: ThemeThumbnailyClass,
       required: true
-    }
+    },
+    active:Boolean
   },
   setup() {
 

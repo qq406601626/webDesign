@@ -1,27 +1,15 @@
 export default {
     namespaced: true,
     state: {
-        name: 'pc module'
-    },
-    getters: {
-        getName(state) {
-            return state.name
+        aside: {
+            thumbnailyItem: {}
         }
     },
+    getters: {},
     mutations: {
-        setName(state, data) {
-            state.name = data
-        },
-    },
-    actions: {
-        async fetchName({commit}) {
-            const name = await new Promise(r => {
-                setTimeout(() => {
-                    commit('setName', 'xxxxxxxxxxxxxxxxx')
-                    r()
-                }, 3000)
-            })
-            return name
+        setAsideThumbnailyItem(state,data){
+            state.aside.thumbnailyItem = data
         }
-    }
+    },
+    actions: {}
 }
