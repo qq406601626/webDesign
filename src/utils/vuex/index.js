@@ -2,7 +2,7 @@ import {createStore} from 'vuex'
 import modules from './modules'
 
 const storeOptions = {
-    strict: true,
+    strict: false,
     modules
 }
 const store = createStore(storeOptions)

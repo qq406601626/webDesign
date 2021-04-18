@@ -126,8 +126,8 @@ export default defineComponent({
   methods: {
     handlerThumbnailyItemClick(thumbnailyItem) {
       this.thumbnailyData.value = thumbnailyItem
-      this.PC.commit('setAsideThumbnailyItem', thumbnailyItem)
-    }
+      this.PC.aside.thumbnailyItem = thumbnailyItem
+    },
   },
 });
 </script>

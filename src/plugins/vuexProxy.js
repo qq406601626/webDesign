@@ -1,6 +1,6 @@
 import modules from '@/utils/vuex/modules'
 const proxyInstance = (app,store) => {
-    // this.$store.state.pc.aside => this.pc.aside
+    // this.$store.state.pc.aside.name => this.pc.aside.name
     // this.$store.getter['pc/getAside'] => this.pc.getAside
     // this.$store.commit('pc/setAside') => this.pc.setAside
     // this.$store.dispatch('pc/fetchAside') => this.pc.fetchAside
@@ -28,6 +28,5 @@ const proxyInstance = (app,store) => {
             }
         })
     })
-    app.config.globalProperties.foo='bar'
 }
 export default proxyInstance
