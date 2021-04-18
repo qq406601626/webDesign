@@ -53,7 +53,8 @@
       <transition-group name="el-zoom-in-center">
         <el-col v-for="(thumbnailyItem) in thumbnailyData.thumbnailyList" :key="thumbnailyItem.name" :span="12"
                 style="margin-bottom: 20px">
-          <img :src="thumbnailyItem.thumbnail" alt="" style="width: 100%">
+          <!--          <img :src="thumbnailyItem.thumbnail" alt="" style="width: 100%">-->
+          <theme-thumbnaily :thumbnaily="thumbnailyItem"></theme-thumbnaily>
         </el-col>
       </transition-group>
     </el-row>
@@ -68,8 +69,10 @@ import {
   ThemeClassifyClass,
   ThemeThumbnailyClass,
 } from "@/scripts";
+import themeThumbnaily from './themeComponents/themeThumbnaily.vue'
 
 export default defineComponent({
+  components:{themeThumbnaily},
   setup() {
     const layoutData = reactive({
       value: ThemeLayoutClass.FullContent,
