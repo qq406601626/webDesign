@@ -1,6 +1,5 @@
 <template>
   <div>pc main</div>
-  <div>{{PC.aside.thumbnailyItem}}</div>
 </template>
 
 <script>

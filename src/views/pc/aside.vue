@@ -1,34 +1,41 @@
 <template>
-  <aside-module-wrap>
+  <el-space
+      direction="vertical"
+      :size="10"
+      :spacer="spacer"
+      class="pc-aside-container"
+      alignment="stretch"
+      style="width: 100%"
+  >
     <aside-module
-      v-for="(module, index) in asideModuleList"
-      :key="index"
-      :module="module"
-      :active="currentSelectModule.asideModule === module"
-      @click="currentSelectModule.asideModule = module"
+        v-for="(asideModule, index) in asideModuleList"
+        :key="index"
+        :module="asideModule"
+        :active="currentSelectModule.asideModule === asideModule"
+        @click="currentSelectModule.asideModule = asideModule"
     >
     </aside-module>
-  </aside-module-wrap>
+  </el-space>
   <el-button @click="print">change</el-button>
   <collapse
-    :visible="!!currentSelectModule.asideModule.component"
-    class="aside-content-wrap"
+      :visible="!!currentSelectModule.asideModule.component"
+      class="aside-content-wrap"
+      @collapse="currentSelectModule.asideModule=originSelectModule"
   >
     <component
-      :is="currentSelectModule.asideModule.component"
-      class="aside-content-component"
+        :is="currentSelectModule.asideModule.component"
+        class="aside-content-component"
     ></component>
   </collapse>
 </template>
 
 <script>
-import { defineComponent, reactive, markRaw } from "vue";
+import {defineComponent, reactive, markRaw, h} from "vue";
 import Collapse from "@/components/collapse.vue";
 import Theme from "./asideComponents/theme.vue";
 import Elements from "./asideComponents/elements.vue";
 import BackgroundImg from "./asideComponents/backgroundImg.vue";
-import { AsideClass } from "@/scripts";
-import AsideModuleWrap from "../commonComponents/asideModuleWrap.vue";
+import {AsideClass} from "@/scripts";
 import AsideModule from "../commonComponents/asideModule.vue";
 
 export default defineComponent({
@@ -37,18 +44,26 @@ export default defineComponent({
     Theme,
     Elements,
     BackgroundImg,
-    AsideModuleWrap,
     AsideModule,
   },
   setup() {
-    const asideModuleList = [
+    const spacer = h("div", {
+      style: {
+        width: "30px",
+        height: "1px",
+        background: "hsla(0, 0%, 100%, .45)",
+        marginLeft: "33px",
+      },
+    });
+    const asideModuleList = reactive([
       new AsideClass("主题", "platform-eleme", markRaw(Theme)),
       new AsideClass("界面元素", "user-solid", markRaw(Elements)),
       new AsideClass("背景图片", "star-on", markRaw(BackgroundImg)),
-    ];
+    ]);
     const originSelectModule = new AsideClass("", "", null);
-    let currentSelectModule = reactive({ asideModule: originSelectModule });
+    let currentSelectModule = reactive({asideModule: originSelectModule});
     return {
+      spacer,
       asideModuleList,
       originSelectModule,
       currentSelectModule,
@@ -56,7 +71,7 @@ export default defineComponent({
   },
   methods: {
     print() {
-      this.currentSelectModule.asideModule = this.originSelectModule;
+      console.log(this.currentSelectModule)
     },
   },
 });

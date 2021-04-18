@@ -2,6 +2,7 @@
   <transition v-on="on">
     <div v-if="visible" class="collapse">
       <slot></slot>
+      <div @click="$emit('collapse')" class="collapse-button el-icon-d-arrow-left"></div>
     </div>
   </transition>
 </template>
@@ -18,6 +19,7 @@ export default defineComponent({
   props: {
     visible: Boolean,
   },
+  emits:['collapse'],
   setup() {
     return {
       on: {
@@ -77,3 +79,25 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+.collapse-button{
+  width: 10px;
+  height: 100%;
+  background: #2a2a2a;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  color: #909399;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  &:hover{
+    background: #333333;
+    color: #a6a9ad;
+  }
+  &:before{
+    transform: translateX(-1px) scale(0.8);
+  }
+}
+</style>

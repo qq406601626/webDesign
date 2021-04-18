@@ -32,7 +32,7 @@ export default defineComponent({
 .aside-module {
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: background-color 300ms linear;
   padding: 10px 0;
   &:hover,
   &.active {
