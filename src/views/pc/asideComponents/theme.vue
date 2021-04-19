@@ -126,7 +126,7 @@ export default defineComponent({
   methods: {
     handlerThumbnailyItemClick(thumbnailyItem) {
       this.thumbnailyData.value = thumbnailyItem
-      this.PC.aside.thumbnailyItem = thumbnailyItem
+      this.PC.aside.theme.thumbnailyItem = thumbnailyItem
     },
   },
 });

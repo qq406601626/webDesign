@@ -47,5 +47,11 @@ class ThemeThumbnailyClass {
         this.isFreeNow = isFreeNow
     }
 }
-
-export { AsideClass, ThemeLayoutClass, ThemeClassifyClass, ThemeThumbnailyClass }
+/** pc-界面元素*/
+class ElemetsSwitchClass{
+    constructor(label,property){
+        this.label=label
+        this.property=property
+    }
+}
+export { AsideClass, ThemeLayoutClass, ThemeClassifyClass, ThemeThumbnailyClass,ElemetsSwitchClass }

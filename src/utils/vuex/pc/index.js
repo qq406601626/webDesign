@@ -2,12 +2,25 @@ export default {
     namespaced: true,
     state: {
         aside: {
-            thumbnailyItem: {},
+            theme: {
+                thumbnailyItem: {},
+            },
+            elements: {
+                a: '',
+                b: '',
+                c: '',
+                d: '',
+                e: '',
+                f: '',
+            },
+            backgroundImg: {
+                uploadUrl:'',
+            }
         }
     },
     getters: {},
     mutations: {
-        setAsideThumbnailyItem(state,data){
+        setAsideThumbnailyItem(state, data) {
             state.aside.thumbnailyItem = data
         }
     },
