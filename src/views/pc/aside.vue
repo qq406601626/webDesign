@@ -1,41 +1,45 @@
 <template>
   <el-space
-      direction="vertical"
-      :size="10"
-      :spacer="spacer"
-      class="pc-aside-container"
-      alignment="stretch"
-      style="width: 100%"
+    direction="vertical"
+    :size="10"
+    :spacer="spacer"
+    class="pc-aside-container"
+    alignment="stretch"
+    style="width: 100%"
   >
     <aside-module
-        v-for="(asideModule, index) in asideModuleList"
-        :key="index"
-        :module="asideModule"
-        :active="currentSelectModule.asideModule === asideModule"
-        @click="currentSelectModule.asideModule = asideModule"
+      v-for="(asideModule, index) in asideModuleList"
+      :key="index"
+      :module="asideModule"
+      :active="currentSelectModule.asideModule === asideModule"
+      @click="currentSelectModule.asideModule = asideModule"
     >
     </aside-module>
   </el-space>
   <el-button @click="print">change</el-button>
   <collapse
-      :visible="!!currentSelectModule.asideModule.component"
-      class="aside-content-wrap"
-      @collapse="currentSelectModule.asideModule=originSelectModule"
+    :visible="!!currentSelectModule.asideModule.component"
+    class="aside-content-wrap"
   >
-    <component
+    <template #default>
+      <component
         :is="currentSelectModule.asideModule.component"
         class="aside-content-component"
-    ></component>
+      ></component>
+    </template>
+    <template #collapse-button>
+      <div @click="currentSelectModule.asideModule = originSelectModule" class="collapse-button el-icon-d-arrow-left"></div>
+    </template>
   </collapse>
 </template>
 
 <script>
-import {defineComponent, reactive, markRaw, h} from "vue";
+import { defineComponent, reactive, markRaw, h } from "vue";
 import Collapse from "@/components/collapse.vue";
 import Theme from "./asideComponents/theme.vue";
 import Elements from "./asideComponents/elements.vue";
 import BackgroundImg from "./asideComponents/backgroundImg.vue";
-import {AsideClass} from "@/scripts";
+import { AsideClass } from "@/scripts";
 import AsideModule from "../commonComponents/asideModule.vue";
 
 export default defineComponent({
@@ -61,7 +65,7 @@ export default defineComponent({
       new AsideClass("背景图片", "star-on", markRaw(BackgroundImg)),
     ]);
     const originSelectModule = new AsideClass("", "", null);
-    let currentSelectModule = reactive({asideModule: originSelectModule});
+    let currentSelectModule = reactive({ asideModule: originSelectModule });
     return {
       spacer,
       asideModuleList,
@@ -71,7 +75,7 @@ export default defineComponent({
   },
   methods: {
     print() {
-      console.log(this.currentSelectModule)
+      console.log(this.currentSelectModule);
     },
   },
 });
@@ -92,6 +96,26 @@ export default defineComponent({
     height: 100%;
     padding: 20px;
     box-sizing: border-box;
+  }
+  .collapse-button {
+    width: 10px;
+    height: 100%;
+    background: #2a2a2a;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    color: #909399;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      background: #333333;
+      color: #a6a9ad;
+    }
+    &:before {
+      transform: translateX(-1px) scale(0.8);
+    }
   }
 }
 </style>

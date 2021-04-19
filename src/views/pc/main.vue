@@ -1,14 +1,16 @@
 <template>
-  <div class="pc-main-container">
-    <el-button @click="change">change</el-button>
-    <collapse
-      
-      class="aside-content-wrap"
-     
-    >
-      <div class="aside-content-component"></div>
-    </collapse>
-  </div>
+  <el-button @click="change">change</el-button>
+  <collapse :visible="show" class="aside-content-wrap">
+    <template #default>
+      <component
+        :is="currentSelectModule.asideModule.component"
+        class="aside-content-component"
+      ></component>
+    </template>
+    <template #collapse-button>
+      <div class="collapse-button el-icon-d-arrow-right"></div>
+    </template>
+  </collapse>
 </template>
 
 <script>
@@ -33,22 +35,39 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.pc-main-container {
-  position: relative;
-  .aside-content-wrap {
-    height: 100%;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    margin-left: 1px;
-    z-index: 2;
-    background: rgb(62, 63, 65);
+.aside-content-wrap {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-left: 1px;
+  z-index: 2;
+  background: rgb(62, 63, 65);
 
-    .aside-content-component {
-      width: 440px;
-      height: 100%;
-      padding: 20px;
-      box-sizing: border-box;
+  .aside-content-component {
+    width: 440px;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .collapse-button {
+    width: 10px;
+    height: 100%;
+    background: #2a2a2a;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    color: #909399;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      background: #333333;
+      color: #a6a9ad;
+    }
+    &:before {
+      transform: translateX(-1px) scale(0.8);
     }
   }
 }
