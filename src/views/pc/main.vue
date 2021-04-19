@@ -1,11 +1,18 @@
 <template>
   <el-button @click="change">change</el-button>
+    <div style="width:200px;height:200px;background:red" v-loading="true">
+      11111111111111111111111
+    </div>
+  <div v-domHover class="aaaaaaa" style="width:200px;height:200px;background:red" >
+    aaaaaaaaaaaaaaaaa
+  </div>
   <collapse :visible="show" class="aside-content-wrap">
     <template #default>
-      <component
+      <!-- <component
         :is="currentSelectModule.asideModule.component"
         class="aside-content-component"
-      ></component>
+      ></component> -->
+      <div class="aside-content-component">111111111111111</div>
     </template>
     <template #collapse-button>
       <div class="collapse-button el-icon-d-arrow-right"></div>
