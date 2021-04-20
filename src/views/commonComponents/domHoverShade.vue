@@ -1,7 +1,7 @@
 <script>
 import {reactive, withDirectives, h, vShow} from "vue";
 
-const CreateHoverShadeInstance = () => {
+const CreateHoverShadeInstance = (onDelete=()=>{}) => {
   const props = reactive({
     showShade: true,
     showBorder: true,
@@ -19,13 +19,20 @@ const CreateHoverShadeInstance = () => {
         [vShow, this.showBorder],
       ]);
       const $deleteButton = withDirectives(
-          h("div", {class: ["delete-button", "el-icon-error"]}),
+          h("div", {
+            class: ["delete-button", "el-icon-error"],
+            onClick: () => {
+              onDelete()
+            }
+          }),
           [[vShow, this.showDeleteButton]]
       );
       const containerChildren = [$shade, $border, $deleteButton];
       const $container = h(
           "div",
-          {class: ["hover-shade-container"]},
+          {
+            class: ["hover-shade-container"],
+          },
           containerChildren
       );
       return $container;
