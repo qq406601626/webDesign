@@ -1,29 +1,6 @@
-import { reactive, withDirectives, render, h, createVNode, vShow } from 'vue'
-const CreateHoverShadeInstance = () => {
-    const props = reactive({
-        showShade: true,
-        showBorder: true,
-        showDeleteButton: true
-    })
-    const instance = {
-        setup() {
-            return props
-        },
-        render() {
-            const $shade = withDirectives(h('div', { class: ['shade'] }), [[vShow, this.showShade]])
-            const $border = withDirectives(h('div', { class: ['border'] }), [[vShow, this.showBorder]])
-            const $deleteButton = withDirectives(h('div', { class: ['delete-button', 'el-icon-error'] }), [[vShow, this.showDeleteButton]])
-            const containerChildren = [$shade, $border, $deleteButton]
-            const $container = h('div', { class: ['hover-shade-container'] }, containerChildren)
-            return $container
-        }
-    }
-    return {
-        props,
-        instance
-    }
-}
 
+import { render, createVNode, } from 'vue'
+import CreateHoverShadeInstance from '@/views/commonComponents/domHoverShade.vue'
 
 class Handler {
     constructor(el, binding) {
@@ -31,6 +8,7 @@ class Handler {
         this.binding = binding
         this.originStyle = {}
         this.instance = null
+        this.props = {}
     }
     insertShadeDom() {
         if (this.instance) {
@@ -41,11 +19,13 @@ class Handler {
             this.el.style.position = 'relative'
         }
         const { instance, props } = CreateHoverShadeInstance()
-        const vm = createVNode(instance)
-        render(vm, document.createElement('div'))
-        this.el.appendChild(vm.el)
+        this.props = props
+        const vInstance = createVNode(instance)
+        render(vInstance, document.createElement('div'))
+        this.el.appendChild(vInstance.el)
+        this.instance = vInstance
         setTimeout(() => {
-            props.showDeleteButton = false
+            this.props.showShade = false
         }, 1000);
     }
     removeShadeDom() {
