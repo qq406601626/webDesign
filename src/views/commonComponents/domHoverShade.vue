@@ -1,5 +1,6 @@
 <script>
-import { reactive, withDirectives, render, h, createVNode, vShow } from "vue";
+import {reactive, withDirectives, h, vShow} from "vue";
+
 const CreateHoverShadeInstance = () => {
   const props = reactive({
     showShade: true,
@@ -11,21 +12,21 @@ const CreateHoverShadeInstance = () => {
       return props;
     },
     render() {
-      const $shade = withDirectives(h("div", { class: ["shade"] }), [
+      const $shade = withDirectives(h("div", {class: ["shade"]}), [
         [vShow, this.showShade],
       ]);
-      const $border = withDirectives(h("div", { class: ["border"] }), [
+      const $border = withDirectives(h("div", {class: ["border"]}), [
         [vShow, this.showBorder],
       ]);
       const $deleteButton = withDirectives(
-        h("div", { class: ["delete-button", "el-icon-error"] }),
-        [[vShow, this.showDeleteButton]]
+          h("div", {class: ["delete-button", "el-icon-error"]}),
+          [[vShow, this.showDeleteButton]]
       );
       const containerChildren = [$shade, $border, $deleteButton];
       const $container = h(
-        "div",
-        { class: ["hover-shade-container"] },
-        containerChildren
+          "div",
+          {class: ["hover-shade-container"]},
+          containerChildren
       );
       return $container;
     },
@@ -47,10 +48,12 @@ export default CreateHoverShadeInstance
   left: 0;
   z-index: 2000;
   cursor: pointer;
+
   .shade {
     background: rgba(0, 0, 0, 0.5);
     height: 100%;
   }
+
   .border {
     position: absolute;
     width: 100%;
@@ -59,6 +62,7 @@ export default CreateHoverShadeInstance
     left: -1px;
     border: 1px dashed #fff;
   }
+
   .delete-button {
     position: absolute;
     right: 0;
