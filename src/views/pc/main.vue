@@ -1,10 +1,21 @@
 <template>
   <el-button @click="change">change</el-button>
-    <div style="width:200px;height:200px;background:red" v-loading="true">
-      11111111111111111111111
-    </div>
-  <div v-domHover class="aaaaaaa" style="width:200px;height:200px;background:red" >
+  <div style="width: 200px; height: 200px; background: red" v-loading="true">
+    11111111111111111111111
+  </div>
+  <div
+    v-domHover
+    class="aaaaaaa"
+    style="width: 200px; height: 200px; background: red"
+  >
     aaaaaaaaaaaaaaaaa
+  </div>
+  <div
+    v-domHover.noShade
+    class="aaaaaaa"
+    style="width: 200px; height: 200px; background: red"
+  >
+    bbbbbbbbbb
   </div>
   <collapse :visible="show" class="aside-content-wrap">
     <template #default>
@@ -21,7 +32,9 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import  * as a  from 'vue'
+console.log('----', a)
+import { defineComponent, ref, reactive } from "vue";
 import Collapse from "@/components/collapse.vue";
 export default defineComponent({
   components: {
