@@ -1,11 +1,12 @@
 <script>
 import { toRefs, ref, reactive, withDirectives, h, vShow } from "vue";
 
-const CreateHoverShadeInstance = (onDelete = () => {}) => {
+const CreateHoverShadeInstance = (handlerCtx) => {
+  const handlerInstance = handlerCtx.el.handlerInstance;
   const props = reactive({
-    showShade: true,
-    showBorder: true,
-    showDeleteButton: true,
+    showShade: handlerInstance?.props.showShade || false,
+    showBorder: handlerInstance?.props.showBorder || false,
+    showDeleteButton: handlerInstance?.props.showDeleteButton || false,
   });
   const refShade = ref(null);
   const instance = {
@@ -33,7 +34,7 @@ const CreateHoverShadeInstance = (onDelete = () => {}) => {
         h("div", {
           class: ["delete-button", "el-icon-error"],
           onClick: () => {
-            onDelete();
+            handlerCtx.handlerDelete();
           },
         }),
         [[vShow, this.showDeleteButton]]

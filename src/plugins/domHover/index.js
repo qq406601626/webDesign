@@ -9,34 +9,27 @@ class Handler {
         this.originStyle = {}
         this.instance = null
         this.props = {}
-        this.isActive = false
-        this.refShade = null
-        this.handlerDelete = () => {
-            this.onDelete()
-        }
+        this.isActive = (el.handlerInstance && el.handlerInstance.isActive) || false,
+            this.refShade = null
+        this.insertShadeDom()
     }
 
     insertShadeDom() {
-        if (this.instance) {
-            this.props.showShade = true
-            this.props.showBorder = true
-            this.props.showDeleteButton = true
-        } else {
-            const style = this.originStyle = window.getComputedStyle(this.el)
-            if (style.position !== 'absolute' && style.position !== 'fixed') {
-                this.el.style.position = 'relative'
-            }
-            const { instance, props, refShade } = CreateHoverShadeInstance(this.handlerDelete)
-            this.props = props
-            this.refShade = refShade
-            const vInstance = createVNode(instance)
-            render(vInstance, document.createElement('div'))
-            this.el.appendChild(vInstance.el)
-            this.instance = vInstance
+        const style = this.originStyle = window.getComputedStyle(this.el)
+        if (style.position !== 'absolute' && style.position !== 'fixed') {
+            this.el.style.position = 'relative'
         }
+        const { instance, props, refShade } = CreateHoverShadeInstance(this)
+        this.props = props
+        this.refShade = refShade
+        const vInstance = createVNode(instance)
+        render(vInstance, document.createElement('div'))
+        this.el.appendChild(vInstance.el)
+        this.instance = vInstance
+        this.el.handlerInstance = this
     }
 
-    removeShadeDom() {
+    hideShadeDom() {
         this.props.showShade = false
         this.props.showBorder = false
         this.props.showDeleteButton = false
@@ -45,21 +38,27 @@ class Handler {
         }
     }
 
+    removeShadeDom() {
+        this.el.removeChild(this.instance.el)
+    }
+
     handlerMouseEnter() {
-        this.insertShadeDom()
+        this.props.showShade = !this.binding.modifiers.noShade
+        this.props.showBorder = true
+        this.props.showDeleteButton = true
     }
 
     handlerMouseLeave() {
         if (this.isActive) {
 
         } else {
-            this.removeShadeDom()
+            this.hideShadeDom()
         }
     }
 
     handlerMouseClick() {
         if (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this) {
-            Handler.activedHandlerInstance.removeShadeDom()
+            Handler.activedHandlerInstance.hideShadeDom()
         }
         this.isActive = true
         Handler.activedHandlerInstance = this
@@ -69,11 +68,13 @@ class Handler {
     async handlerBlur(event) {
         await nextTick()
         if (this.refShade && event.target !== this.refShade.value && Handler.activedHandlerInstance) {
-            Handler.activedHandlerInstance.removeShadeDom()
+            Handler.activedHandlerInstance.hideShadeDom()
+            Handler.activedHandlerInstance.isActive = false
+            Handler.activedHandlerInstance = null
         }
     }
-    
-    onDelete() {
+
+    handlerDelete() {
         // todo
         this.el.parentNode.removeChild((this.el))
     }
@@ -122,8 +123,18 @@ const hoverOptions = {
         handler.onMouseClick()
         handler.onBlur()
     },
-    updated() {
+    updated(el, binding) {
 
+        if (!el.contains(el.handlerInstance.instance.el)) {
+            el.handlerInstance.insertShadeDom()
+        }
+    },
+    unmounted(el, binding) {
+        // todo
+        // if (binding.handlerInstance) {
+        //     binding.handlerInstance.hideShadeDom()
+        //     binding.handlerInstance.removeShadeDom()
+        // }
     }
 }
 const install = (app) => {

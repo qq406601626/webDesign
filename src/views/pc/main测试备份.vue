@@ -1,6 +1,31 @@
 <template>
-  <div v-domHover style="width: 200px; height: 2000px; background: green"></div>
-  <div v-domHover style="width: 200px; height: 200px; background: red"></div>
+  <!--
+    <el-button @click="changeLoading">changeLoading</el-button>
+  <el-button @click="changeCollapse">changeCollapse</el-button>
+  <el-button @click="changeHoverDomShowHide">changeHoverDomShowHide</el-button>
+  <el-button @click="changeText">changeText</el-button>
+  <div style="width: 200px; height: 200px; background: red" v-loading="loading">
+    11111111111111111111111
+  </div>
+
+  <div
+    v-domHover
+    class="aaaaaaa"
+    style="width: 200px; height: 200px; background: red"
+  >
+    aaaaaaaaaaaaaaaaa
+  </div>
+  <div
+    v-domHover.noShade
+    class="bbbbbbb"
+    style="width: 200px; height: 200px; background: red"
+  >
+    bbbbbbbbbb
+  </div>
+  <div  v-domHover :id="text" style="width: 200px; height: 200px; background: red">
+    <div>text:{{text}}</div>
+  </div>
+  -->
   <collapse :visible="showCollapse" class="aside-content-wrap">
     <template #default>
       <!-- <component
@@ -16,6 +41,8 @@
 </template>
 
 <script>
+// import * as a from "vue";
+// console.log("----", a);
 import { defineComponent, ref, reactive } from "vue";
 import Collapse from "@/components/collapse.vue";
 export default defineComponent({
@@ -23,12 +50,31 @@ export default defineComponent({
     Collapse,
   },
   setup() {
+    const loading = ref(false);
     const showCollapse = ref(false);
+    const hoverDomShow = ref(false);
+    const text = ref("aaaaaaaaaaaa");
     return {
+      loading,
       showCollapse,
+      hoverDomShow,
+      text,
     };
   },
-  methods: {},
+  methods: {
+    changeCollapse() {
+      this.showCollapse = !this.show;
+    },
+    changeHoverDomShowHide() {
+      this.hoverDomShow = !this.hoverDomShow;
+    },
+    changeText() {
+      this.text = "bbbbbbbbbbbbbb";
+    },
+    changeLoading() {
+      this.loading = !this.loading;
+    },
+  },
   mounted() {},
 });
 </script>
