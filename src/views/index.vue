@@ -2,10 +2,10 @@
   <el-container class="container">
     <el-header class="header">
       <el-row
-        type="flex"
-        align="center"
-        justify="space-between"
-        style="height: 100%"
+          type="flex"
+          align="center"
+          justify="space-between"
+          style="height: 100%"
       >
         <div class="logo"></div>
         <div class="design-type"></div>
@@ -16,7 +16,7 @@
         </el-space>
       </el-row>
     </el-header>
-    <el-container>
+    <el-container class="aside-main-box">
       <el-aside class="aside" width="96px">
         <router-view name="aside"></router-view>
       </el-aside>
@@ -28,19 +28,24 @@
 </template>
 
 <script>
-import { defineComponent, ref, reactive, isReactive } from "vue";
-// 把vnode里的children渲染到页面
+import {defineComponent, ref, reactive, isReactive} from "vue";
 
 export default defineComponent({
-  setup() {},
+  setup() {
+  },
   methods: {},
-  mounted() {},
+  mounted() {
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .container {
   height: 100vh;
+
+  .aside-main-box {
+    overflow: hidden;
+  }
 
   .header {
     background: rgb(62, 63, 65);

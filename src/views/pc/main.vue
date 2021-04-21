@@ -1,13 +1,13 @@
 <template>
-  <div v-domHover style="width: 200px; height: 2000px; background: green"></div>
-  <div v-domHover style="width: 200px; height: 200px; background: red"></div>
-  <collapse :visible="showCollapse" class="aside-content-wrap">
+  <main-title v-domHover.noShade></main-title>
+
+
+  <collapse :visible="true" class="main-setting-content-wrap">
     <template #default>
-      <!-- <component
-        :is="currentSelectModule.asideModule.component"
-        class="aside-content-component"
-      ></component> -->
-      <div class="aside-content-component">111111111111111</div>
+      <component
+          is="mainTitleSetting"
+          class="main-setting-content-component"
+      ></component>
     </template>
     <template #collapse-button>
       <div class="collapse-button el-icon-d-arrow-right"></div>
@@ -16,11 +16,17 @@
 </template>
 
 <script>
-import { defineComponent, ref, reactive } from "vue";
+import {defineComponent, ref, reactive} from "vue";
+import mainTitle from './mainComponents/title.vue'
+import mainTitleSetting from './settingComponents/tileSetting.vue'
+
 import Collapse from "@/components/collapse.vue";
+
 export default defineComponent({
   components: {
     Collapse,
+    mainTitle,
+    mainTitleSetting
   },
   setup() {
     const showCollapse = ref(false);
@@ -29,12 +35,15 @@ export default defineComponent({
     };
   },
   methods: {},
-  mounted() {},
+  mounted() {
+  },
 });
 </script>
 
 <style lang="scss" scoped>
-.aside-content-wrap {
+
+
+.main-setting-content-wrap {
   height: 100%;
   position: absolute;
   right: 0;
@@ -43,12 +52,13 @@ export default defineComponent({
   z-index: 2;
   background: rgb(62, 63, 65);
 
-  .aside-content-component {
+  .main-setting-content-component {
     width: 440px;
     height: 100%;
     padding: 20px;
     box-sizing: border-box;
   }
+
   .collapse-button {
     width: 10px;
     height: 100%;
@@ -61,13 +71,16 @@ export default defineComponent({
     align-items: center;
     font-size: 12px;
     cursor: pointer;
+
     &:hover {
       background: #333333;
       color: #a6a9ad;
     }
+
     &:before {
       transform: translateX(-1px) scale(0.8);
     }
   }
 }
+
 </style>
