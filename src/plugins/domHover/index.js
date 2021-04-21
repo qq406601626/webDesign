@@ -1,11 +1,8 @@
-import {render, createVNode,} from 'vue'
-import CreateHoverShadeInstance from '@/views/commonComponents/domHoverShade.vue'
+import { render, createVNode, nextTick } from 'vue'
+import CreateHoverShadeInstance from './domHoverShade.vue'
 
 class Handler {
     static activedHandlerInstance = null
-    static handlerBlur(event){
-        console.log('xxxxxxxxxxx')
-    }
     constructor(el, binding) {
         this.el = el
         this.binding = binding
@@ -13,6 +10,7 @@ class Handler {
         this.instance = null
         this.props = {}
         this.isActive = false
+        this.refShade = null
         this.handlerDelete = () => {
             this.onDelete()
         }
@@ -28,8 +26,9 @@ class Handler {
             if (style.position !== 'absolute' && style.position !== 'fixed') {
                 this.el.style.position = 'relative'
             }
-            const {instance, props} = CreateHoverShadeInstance(this.handlerDelete)
+            const { instance, props, refShade } = CreateHoverShadeInstance(this.handlerDelete)
             this.props = props
+            this.refShade = refShade
             const vInstance = createVNode(instance)
             render(vInstance, document.createElement('div'))
             this.el.appendChild(vInstance.el)
@@ -41,6 +40,9 @@ class Handler {
         this.props.showShade = false
         this.props.showBorder = false
         this.props.showDeleteButton = false
+        if (Handler.activedHandlerInstance) {
+            Handler.activedHandlerInstance.isActive = false
+        }
     }
 
     handlerMouseEnter() {
@@ -57,7 +59,6 @@ class Handler {
 
     handlerMouseClick() {
         if (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this) {
-            Handler.activedHandlerInstance.isActive = false
             Handler.activedHandlerInstance.removeShadeDom()
         }
         this.isActive = true
@@ -65,9 +66,15 @@ class Handler {
         // todo
     }
 
+    async handlerBlur(event) {
+        await nextTick()
+        if (this.refShade && event.target !== this.refShade.value && Handler.activedHandlerInstance) {
+            Handler.activedHandlerInstance.removeShadeDom()
+        }
+    }
+    
     onDelete() {
         // todo
-        console.log('onDelete')
         this.el.parentNode.removeChild((this.el))
     }
 
@@ -90,7 +97,10 @@ class Handler {
     }
 
     onBlur() {
-       document.body.addEventListener('click',Handler.handlerBlur,true)
+        if (!Handler.blurHandler) {
+            Handler.blurHandler = this.handlerBlur.bind(this)
+            document.body.addEventListener('click', Handler.blurHandler, true)
+        }
     }
 }
 

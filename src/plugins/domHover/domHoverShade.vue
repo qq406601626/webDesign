@@ -1,39 +1,50 @@
 <script>
-import {reactive, withDirectives, h, vShow} from "vue";
+import { toRefs, ref, reactive, withDirectives, h, vShow } from "vue";
 
-const CreateHoverShadeInstance = (onDelete=()=>{}) => {
+const CreateHoverShadeInstance = (onDelete = () => {}) => {
   const props = reactive({
     showShade: true,
     showBorder: true,
     showDeleteButton: true,
   });
+  const refShade = ref(null);
   const instance = {
     setup() {
-      return props;
+      return {
+        ...toRefs(props),
+        refShade,
+      };
     },
     render() {
-      const $shade = withDirectives(h("div", {class: ["shade"]}), [
-        [vShow, this.showShade],
-      ]);
-      const $border = withDirectives(h("div", {class: ["border"]}), [
-        [vShow, this.showBorder],
-      ]);
+      const $shade = withDirectives(
+        h("div", {
+          class: ["shade"],
+          ref: "refShade",
+        }),
+        [[vShow, this.showShade]]
+      );
+      const $border = withDirectives(
+        h("div", {
+          class: ["border"],
+        }),
+        [[vShow, this.showBorder]]
+      );
       const $deleteButton = withDirectives(
-          h("div", {
-            class: ["delete-button", "el-icon-error"],
-            onClick: () => {
-              onDelete()
-            }
-          }),
-          [[vShow, this.showDeleteButton]]
+        h("div", {
+          class: ["delete-button", "el-icon-error"],
+          onClick: () => {
+            onDelete();
+          },
+        }),
+        [[vShow, this.showDeleteButton]]
       );
       const containerChildren = [$shade, $border, $deleteButton];
       const $container = h(
-          "div",
-          {
-            class: ["hover-shade-container"],
-          },
-          containerChildren
+        "div",
+        {
+          class: ["hover-shade-container"],
+        },
+        containerChildren
       );
       return $container;
     },
@@ -41,9 +52,10 @@ const CreateHoverShadeInstance = (onDelete=()=>{}) => {
   return {
     props,
     instance,
+    refShade,
   };
 };
-export default CreateHoverShadeInstance
+export default CreateHoverShadeInstance;
 </script>
 
 <style lang="scss">
@@ -68,6 +80,7 @@ export default CreateHoverShadeInstance
     top: -1px;
     left: -1px;
     border: 1px dashed #fff;
+    pointer-events: none;
   }
 
   .delete-button {
