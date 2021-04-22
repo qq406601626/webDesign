@@ -3,7 +3,7 @@
   <collapse :visible="true" class="main-setting-content-wrap">
     <template #default>
       <component
-        is="mainTitleSetting"
+        is="mainQrSetting"
         class="main-setting-content-component"
       ></component>
     </template>
@@ -17,7 +17,7 @@
 import { defineComponent, ref, reactive } from "vue";
 import mainTitle from "./mainComponents/title.vue";
 import mainTitleSetting from "./settingComponents/tileSetting.vue";
-
+import mainQrSetting from "./settingComponents/qrSetting.vue";
 import Collapse from "@/components/collapse.vue";
 
 export default defineComponent({
@@ -25,6 +25,7 @@ export default defineComponent({
     Collapse,
     mainTitle,
     mainTitleSetting,
+    mainQrSetting,
   },
   setup() {
     const showCollapse = ref(false);
