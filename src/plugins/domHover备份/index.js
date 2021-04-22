@@ -1,4 +1,4 @@
-import { render, createVNode, nextTick, reactive } from 'vue'
+import { render, createVNode, nextTick } from 'vue'
 import CreateHoverShadeInstance from './domHoverShade.vue'
 
 class Handler {
@@ -8,13 +8,10 @@ class Handler {
         this.binding = binding
         this.originStyle = {}
         this.instance = null
-        this.props = reactive({
-            showShade: el.handlerInstance?.props.showShade || false,
-            showBorder: el.handlerInstance?.props.showBorder || false,
-            showDeleteButton: el.handlerInstance?.props.showDeleteButton || false,
-        })
+        this.props = {}
         this.isActive = (el.handlerInstance && el.handlerInstance.isActive) || false,
             this.refShade = null
+        this.insertShadeDom()
     }
 
     insertShadeDom() {
@@ -22,14 +19,14 @@ class Handler {
         if (style.position !== 'absolute' && style.position !== 'fixed') {
             this.el.style.position = 'relative'
         }
-        const { instance, refShade } = CreateHoverShadeInstance(this)
+        const { instance, props, refShade } = CreateHoverShadeInstance(this)
+        this.props = props
         this.refShade = refShade
         const vInstance = createVNode(instance)
         render(vInstance, document.createElement('div'))
         this.el.appendChild(vInstance.el)
         this.instance = vInstance
         this.el.handlerInstance = this
-        return this
     }
 
     hideShadeDom() {
@@ -43,13 +40,6 @@ class Handler {
 
     removeShadeDom() {
         this.el.removeChild(this.instance.el)
-    }
-    registerEvent() {
-        this.onMouseEnter()
-        this.onMouseLeave()
-        this.onMouseClick()
-        this.onBlur()
-        return this
     }
 
     handlerMouseEnter() {
@@ -128,9 +118,13 @@ class Handler {
 const hoverOptions = {
     mounted(el, binding) {
         const handler = new Handler(el, binding)
-        handler.insertShadeDom().registerEvent()
+        handler.onMouseEnter()
+        handler.onMouseLeave()
+        handler.onMouseClick()
+        handler.onBlur()
     },
-    updated(el) {
+    updated(el, binding) {
+
         if (!el.contains(el.handlerInstance.instance.el)) {
             el.handlerInstance.insertShadeDom()
         }

@@ -1,5 +1,5 @@
 <template>
-  <!--
+  
     <el-button @click="changeLoading">changeLoading</el-button>
   <el-button @click="changeCollapse">changeCollapse</el-button>
   <el-button @click="changeHoverDomShowHide">changeHoverDomShowHide</el-button>
@@ -25,7 +25,7 @@
   <div  v-domHover :id="text" style="width: 200px; height: 200px; background: red">
     <div>text:{{text}}</div>
   </div>
-  -->
+ 
   <collapse :visible="showCollapse" class="aside-content-wrap">
     <template #default>
       <!-- <component

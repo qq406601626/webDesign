@@ -1,12 +1,18 @@
 <script>
-import { toRefs, ref, withDirectives, h, vShow } from "vue";
+import { toRefs, ref, reactive, withDirectives, h, vShow } from "vue";
 
 const CreateHoverShadeInstance = (handlerCtx) => {
+  const handlerInstance = handlerCtx.el.handlerInstance;
+  const props = reactive({
+    showShade: handlerInstance?.props.showShade || false,
+    showBorder: handlerInstance?.props.showBorder || false,
+    showDeleteButton: handlerInstance?.props.showDeleteButton || false,
+  });
   const refShade = ref(null);
   const instance = {
     setup() {
       return {
-        ...toRefs(handlerCtx.props),
+        ...toRefs(props),
         refShade,
       };
     },
@@ -45,6 +51,7 @@ const CreateHoverShadeInstance = (handlerCtx) => {
     },
   };
   return {
+    props,
     instance,
     refShade,
   };
