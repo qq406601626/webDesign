@@ -1,12 +1,10 @@
 <template>
   <main-title v-domHover.noShade></main-title>
-
-
   <collapse :visible="true" class="main-setting-content-wrap">
     <template #default>
       <component
-          is="mainTitleSetting"
-          class="main-setting-content-component"
+        is="mainTitleSetting"
+        class="main-setting-content-component"
       ></component>
     </template>
     <template #collapse-button>
@@ -16,9 +14,9 @@
 </template>
 
 <script>
-import {defineComponent, ref, reactive} from "vue";
-import mainTitle from './mainComponents/title.vue'
-import mainTitleSetting from './settingComponents/tileSetting.vue'
+import { defineComponent, ref, reactive } from "vue";
+import mainTitle from "./mainComponents/title.vue";
+import mainTitleSetting from "./settingComponents/tileSetting.vue";
 
 import Collapse from "@/components/collapse.vue";
 
@@ -26,7 +24,7 @@ export default defineComponent({
   components: {
     Collapse,
     mainTitle,
-    mainTitleSetting
+    mainTitleSetting,
   },
   setup() {
     const showCollapse = ref(false);
@@ -34,15 +32,23 @@ export default defineComponent({
       showCollapse,
     };
   },
+  data() {
+    return {
+      width: "100px",
+      height: "200px",
+    };
+  },
   methods: {},
   mounted() {
+    setTimeout(() => {
+      this.width = "200px";
+      this.height = "200px";
+    }, 5000);
   },
 });
 </script>
 
 <style lang="scss" scoped>
-
-
 .main-setting-content-wrap {
   height: 100%;
   position: absolute;
@@ -82,5 +88,4 @@ export default defineComponent({
     }
   }
 }
-
 </style>

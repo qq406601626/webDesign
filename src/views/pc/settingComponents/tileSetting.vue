@@ -1,9 +1,9 @@
 <template>
   <el-space
-      direction="vertical"
-      alignment="stretch"
-      :size="20"
-      class="title-setting-container"
+    direction="vertical"
+    alignment="stretch"
+    :size="20"
+    class="title-setting-container"
   >
     <el-row type="flex" justify="center" style="font-size: 26px">
       标题设置
@@ -12,16 +12,22 @@
       <el-col :span="6">文字颜色：</el-col>
       <el-col :span="18">
         <el-color-picker
-            v-model="PC.main.title.fontColor"
-            show-alpha
-            :predefine="['#ff0000','#00ff00','#0000ff']">
+          v-model="PC.main.title.fontColor"
+          show-alpha
+          :predefine="['#ff0000', '#00ff00', '#0000ff']"
+        >
         </el-color-picker>
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="20">
       <el-col :span="6">文字大小：</el-col>
       <el-col :span="18">
-        <el-slider v-model="PC.main.title.fontSize" :min="12" :max="50" :marks="_marks"></el-slider>
+        <el-slider
+          v-model="PC.main.title.fontSize"
+          :min="12"
+          :max="50"
+          :marks="_marks"
+        ></el-slider>
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="20">
@@ -35,7 +41,17 @@
     </el-row>
     <el-row type="flex" align="middle" :gutter="20">
       <el-col :span="6">标题商标：</el-col>
-      <el-col :span="18">11111</el-col>
+      <el-col :span="18">
+        <el-upload
+          action=""
+          list-type="picture-card"
+          on-preview=""
+          on-remove=""
+          style="width:40px;height:40px;"
+        >
+          <i class="el-icon-plus"></i>
+        </el-upload>
+      </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="20">
       <el-col :span="6">标题内容：</el-col>
@@ -45,7 +61,7 @@
 </template>
 
 <script>
-import {defineComponent, ref, reactive} from "vue";
+import { defineComponent, ref, reactive } from "vue";
 
 export default defineComponent({
   components: {},
@@ -54,13 +70,13 @@ export default defineComponent({
   },
   computed: {
     _marks() {
-      let marks = {}
+      let marks = {};
       for (let i = 12; i <= 50; i += 6) {
-        marks[i] = String(i)
+        marks[i] = String(i);
       }
-      return marks
-    }
-  }
+      return marks;
+    },
+  },
 });
 </script>
 
