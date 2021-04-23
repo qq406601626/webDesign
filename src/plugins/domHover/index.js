@@ -1,8 +1,16 @@
-import { render, createVNode, nextTick, reactive } from 'vue'
+import { render, createVNode, reactive } from 'vue'
 import CreateHoverShadeInstance from './domHoverShade.vue'
 
 class Handler {
     static activedHandlerInstance = null
+    static blurHandler = function (event) {
+        const domHover = event.target.closest('.domHover')
+        if (!domHover && Handler.activedHandlerInstance) {
+            Handler.activedHandlerInstance.hideShadeDom()
+            Handler.activedHandlerInstance.isActive = false
+            Handler.activedHandlerInstance = null
+        }
+    }
     constructor(el, binding) {
         this.el = el
         this.binding = binding
@@ -13,12 +21,13 @@ class Handler {
             showBorder: el.handlerInstance?.props.showBorder || false,
             showDeleteButton: el.handlerInstance?.props.showDeleteButton || false,
         })
-        this.isActive = (el.handlerInstance && el.handlerInstance.isActive) || false,
-            this.refShade = null
+        this.isActive = (el.handlerInstance && el.handlerInstance.isActive) || false
+        this.refShade = null
     }
 
     insertShadeDom() {
         const style = this.originStyle = window.getComputedStyle(this.el)
+        this.el.classList.add('domHover')
         if (style.position !== 'absolute' && style.position !== 'fixed') {
             this.el.style.position = 'relative'
         }
@@ -72,21 +81,13 @@ class Handler {
         }
         this.isActive = true
         Handler.activedHandlerInstance = this
-        // todo
-    }
 
-    async handlerBlur(event) {
-        await nextTick()
-        if (this.refShade && event.target !== this.refShade.value && Handler.activedHandlerInstance) {
-            Handler.activedHandlerInstance.hideShadeDom()
-            Handler.activedHandlerInstance.isActive = false
-            Handler.activedHandlerInstance = null
-        }
     }
-
     handlerDelete() {
-        // todo
         this.el.parentNode.removeChild((this.el))
+        if (this.binding.arg && typeof this.binding.arg.afterDelete === 'function') {
+            this.binding.arg.afterDelete()
+        }
     }
 
     onMouseEnter() {
@@ -108,10 +109,7 @@ class Handler {
     }
 
     onBlur() {
-        if (!Handler.blurHandler) {
-            Handler.blurHandler = this.handlerBlur.bind(this)
-            document.body.addEventListener('click', Handler.blurHandler, true)
-        }
+        document.body.addEventListener('click', Handler.blurHandler, false)
     }
 }
 

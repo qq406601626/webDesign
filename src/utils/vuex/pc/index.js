@@ -27,7 +27,7 @@ export default {
                 fontColor:'#ffffff', // 文字颜色
                 fontBolder:true, // 文字加粗
                 brand:'', // 标题商标图
-                text:'', // 标题内容
+                text:'测试', // 标题内容
             },
             // 左上角logo
             logo:{

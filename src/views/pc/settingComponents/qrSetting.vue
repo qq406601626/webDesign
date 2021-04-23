@@ -10,8 +10,8 @@
     </el-row>
     <el-divider style="margin-bottom: 0; margin-top: 0"></el-divider>
     <el-row type="flex" align="top" :gutter="0">
-      <el-col :span="9">二维码设置：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码设置：</el-col>
+      <el-col :span="rightColSpan">
         <el-space direction="vertical" alignment="stretch" :size="10">
           <el-space :size="[10, 0]">
             <el-upload action="">
@@ -30,8 +30,8 @@
       </el-col>
     </el-row>
     <el-row type="flex" align="top" :gutter="0">
-      <el-col :span="9">二维码预览：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码预览：</el-col>
+      <el-col :span="rightColSpan">
         <el-image
           src="/src/assets/img/test/qr.png"
           fit="contain"
@@ -47,8 +47,8 @@
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="0">
-      <el-col :span="9">二维码文字颜色：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码文字颜色：</el-col>
+      <el-col :span="rightColSpan">
         <el-color-picker
           show-alpha
           :predefine="['#ff0000', '#00ff00', '#0000ff']"
@@ -56,14 +56,14 @@
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="0">
-      <el-col :span="9">二维码文字大小：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码文字大小：</el-col>
+      <el-col :span="rightColSpan">
         <el-slider :min="12" :max="50" :marks="_marks"></el-slider>
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="0">
-      <el-col :span="9">二维码文字加粗：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码文字加粗：</el-col>
+      <el-col :span="rightColSpan">
         <el-radio-group>
           <el-radio :label="true">是</el-radio>
           <el-radio :label="false">否</el-radio>
@@ -71,14 +71,14 @@
       </el-col>
     </el-row>
     <el-row type="flex" align="top" :gutter="0">
-      <el-col :span="9">二维码文字描述：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码文字描述：</el-col>
+      <el-col :span="rightColSpan">
         <el-input type="textarea"></el-input>
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="0">
-      <el-col :span="9">二维码显示方式：</el-col>
-      <el-col :span="15">
+      <el-col :span="leftColSpan">二维码显示方式：</el-col>
+      <el-col :span="rightColSpan">
         <el-link type="primary">去设置</el-link>
       </el-col>
     </el-row>
@@ -92,6 +92,12 @@ export default defineComponent({
   components: {},
   setup() {
     return {};
+  },
+  data(){
+    return {
+      leftColSpan:9,
+      rightColSpan:15
+    }
   },
   computed: {
     _marks() {
