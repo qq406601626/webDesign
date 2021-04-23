@@ -1,6 +1,7 @@
 <template>
   <main-title v-domHover.noShade></main-title>
-  <collapse :visible="true" class="main-setting-content-wrap">
+  <el-button @click="show = !show">change</el-button>
+  <collapse :visible="show" class="main-setting-content-wrap">
     <template #default>
       <component
         is="mainQrSetting"
@@ -35,8 +36,7 @@ export default defineComponent({
   },
   data() {
     return {
-      width: "100px",
-      height: "200px",
+      show: true,
     };
   },
   methods: {},
@@ -58,6 +58,8 @@ export default defineComponent({
   margin-left: 1px;
   z-index: 2;
   background: rgb(62, 63, 65);
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .main-setting-content-component {
     width: 440px;

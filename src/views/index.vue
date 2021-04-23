@@ -64,6 +64,7 @@ export default defineComponent({
   .main {
     background: rgb(76, 76, 76);
     position: relative;
+    overflow: hidden;
   }
 }
 </style>

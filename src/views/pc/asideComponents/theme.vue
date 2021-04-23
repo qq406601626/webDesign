@@ -136,20 +136,6 @@ export default defineComponent({
   color: #ffffff;
 
   > .el-space__item:last-child {
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.3);
-      box-shadow: inset 0 0 12px hsl(0deg 0% 100% / 80%);
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      background-color: #333;
-    }
-
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
