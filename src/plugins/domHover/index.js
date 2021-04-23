@@ -81,12 +81,15 @@ class Handler {
         }
         this.isActive = true
         Handler.activedHandlerInstance = this
+        if (this.binding.arg && typeof this.binding.arg.afterHoverClick === 'function') {
+            this.binding.arg.afterHoverClick(this.binding.value)
+        }
 
     }
     handlerDelete() {
         this.el.parentNode.removeChild((this.el))
-        if (this.binding.arg && typeof this.binding.arg.afterDelete === 'function') {
-            this.binding.arg.afterDelete()
+        if (this.binding.arg && typeof this.binding.arg.afterHoverDelete === 'function') {
+            this.binding.arg.afterHoverDelete()
         }
     }
 

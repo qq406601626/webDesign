@@ -1,22 +1,32 @@
 <template>
-  <div v-domHover:[{afterDelete,afterClick}].noShade style="width:200px;height:200px;background:red">11111111</div>
-  <main-title v-domHover:[{afterDelete,afterClick}].noShade></main-title>
-  <el-button @click="show = !show">change</el-button>
-  <collapse :visible="show" class="main-setting-content-wrap">
+  settingComponentName:{{ settingComponentName }}
+  <main-title
+    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"
+  ></main-title>
+  <el-button
+    class="msg"
+    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"
+    >msg</el-button
+  >
+  <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">
     <template #default>
       <component
-        is="mainMsgSetting"
+        v-if="settingComponentName"
+        :is="settingComponentName"
         class="main-setting-content-component"
       ></component>
     </template>
     <template #collapse-button>
-      <div class="collapse-button el-icon-d-arrow-right"></div>
+      <div
+        class="collapse-button el-icon-d-arrow-right"
+        @click="settingComponentName = ''"
+      ></div>
     </template>
   </collapse>
 </template>
 
 <script>
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref } from "vue";
 import mainTitle from "./mainComponents/title.vue";
 import mainTitleSetting from "./settingComponents/tileSetting.vue";
 import mainQrSetting from "./settingComponents/qrSetting.vue";
@@ -32,29 +42,28 @@ export default defineComponent({
     mainMsgSetting,
   },
   setup() {
-    const showCollapse = ref(false);
+    // const settingComponentName = ref(undefined);
+    const qqqqq = ref("qqqqqqqqqq");
     return {
-      showCollapse,
+      qqqqq,
+      // settingComponentName,
     };
   },
   data() {
     return {
-      show: true,
+      settingComponentName: "",
     };
   },
+
   methods: {
-    afterDelete() {
-      console.log("afterDelete");
+    afterHoverDelete() {
+      console.log(this.settingComponentName);
+      this.settingComponentName = "";
+      console.log(this.settingComponentName)
     },
-    afterClick() {
-      console.log("afterClick");
+    afterHoverClick(componentName) {
+      this.settingComponentName = componentName;
     },
-  },
-  mounted() {
-    setTimeout(() => {
-      this.width = "200px";
-      this.height = "200px";
-    }, 5000);
   },
 });
 </script>
