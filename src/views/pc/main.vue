@@ -15,10 +15,17 @@
       v-domHover.noShade
       class="wraper"
       style="width: 300px;height: 300px;display: flex;justify-content: center;align-items: center;background: green">
+    <div>11111111111</div>
     <div
         v-domHover
         class="inner" style="width: 100px;height: 100px;background: gold">
+      <div
+          v-domHover
+          class="inner2" style="width: 50px;height: 50px;background: blue">
+
+      </div>
     </div>
+    <div>2222222222222</div>
   </div>
 
   <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">

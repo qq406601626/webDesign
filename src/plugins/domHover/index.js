@@ -35,7 +35,8 @@ class Handler {
         this.refShade = refShade
         const vInstance = createVNode(instance)
         render(vInstance, document.createElement('div'))
-        this.el.appendChild(vInstance.el)
+        // 这样可以实现嵌套
+        this.el.insertBefore(vInstance.el, this.el.firstChild)
         this.instance = vInstance
         this.el.handlerInstance = this
         return this
