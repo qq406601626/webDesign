@@ -87,7 +87,7 @@ class Handler {
 
     }
     handlerDelete() {
-        this.el.parentNode.removeChild((this.el))
+        this.removeShadeDom()
         if (this.binding.arg && typeof this.binding.arg.afterHoverDelete === 'function') {
             this.binding.arg.afterHoverDelete()
         }
@@ -98,7 +98,7 @@ class Handler {
             this.handlerMouseEnter()
         })
     }
-
+    // 如果存在嵌套：鼠标移动到外层元素是，外层元素可点击。鼠标移到内层元素时，外层元素不可点击，同时内层元素可点击。
     onMouseLeave() {
         this.el.addEventListener('mouseleave', () => {
             this.handlerMouseLeave()

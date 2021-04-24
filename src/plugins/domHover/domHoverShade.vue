@@ -27,12 +27,9 @@ const CreateHoverShadeInstance = (handlerCtx) => {
       const $deleteButton = withDirectives(
         h("div", {
           class: ["delete-button", "el-icon-error"],
-          // onClick: () => {
-          //   handlerCtx.handlerDelete();
-          // },
-          onClick() {
-            console.log('wwwwwwwwwwwww')
+          onClick(event) {
             handlerCtx.handlerDelete();
+            event.stopPropagation();
           },
         }),
         [[vShow, this.showDeleteButton]]

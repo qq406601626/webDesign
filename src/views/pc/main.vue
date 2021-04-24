@@ -1,32 +1,45 @@
 <template>
   settingComponentName:{{ settingComponentName }}
   <main-title
-    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"
+      v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"
   ></main-title>
   <el-button
-    class="msg"
-    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"
-    >msg</el-button
+      class="msg"
+      v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"
+  >msg
+  </el-button
   >
+
+
+  <div
+      v-domHover.noShade
+      class="wraper"
+      style="width: 300px;height: 300px;display: flex;justify-content: center;align-items: center;background: green">
+    <div
+        v-domHover
+        class="inner" style="width: 100px;height: 100px;background: gold">
+    </div>
+  </div>
+
   <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">
     <template #default>
       <component
-        v-if="settingComponentName"
-        :is="settingComponentName"
-        class="main-setting-content-component"
+          v-if="settingComponentName"
+          :is="settingComponentName"
+          class="main-setting-content-component"
       ></component>
     </template>
     <template #collapse-button>
       <div
-        class="collapse-button el-icon-d-arrow-right"
-        @click="settingComponentName = ''"
+          class="collapse-button el-icon-d-arrow-right"
+          @click="settingComponentName = ''"
       ></div>
     </template>
   </collapse>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import {defineComponent, ref} from "vue";
 import mainTitle from "./mainComponents/title.vue";
 import mainTitleSetting from "./settingComponents/tileSetting.vue";
 import mainQrSetting from "./settingComponents/qrSetting.vue";
@@ -42,11 +55,9 @@ export default defineComponent({
     mainMsgSetting,
   },
   setup() {
-    // const settingComponentName = ref(undefined);
-    const qqqqq = ref("qqqqqqqqqq");
+    const settingComponentName = ref(undefined);
     return {
-      qqqqq,
-      // settingComponentName,
+      settingComponentName,
     };
   },
   data() {
@@ -57,9 +68,7 @@ export default defineComponent({
 
   methods: {
     afterHoverDelete() {
-      console.log(this.settingComponentName);
       this.settingComponentName = "";
-      console.log(this.settingComponentName)
     },
     afterHoverClick(componentName) {
       this.settingComponentName = componentName;
