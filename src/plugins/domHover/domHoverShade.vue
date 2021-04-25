@@ -60,7 +60,7 @@ export default CreateHoverShadeInstance;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 0;
   cursor: pointer;
 
   .shade {

@@ -1,5 +1,5 @@
 <template>
-  settingComponentName:{{ settingComponentName }}
+  <!-- settingComponentName:{{ settingComponentName }}
   <main-title
       v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"
   ></main-title>
@@ -8,8 +8,7 @@
       v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"
   >msg
   </el-button
-  >
-
+  > -->
 
   <div
       v-domHover.noShade
@@ -27,26 +26,27 @@
     </div>
     <div>2222222222222</div>
   </div>
+  <!-- <div v-domHover>1111</div> -->
 
   <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">
     <template #default>
       <component
-          v-if="settingComponentName"
-          :is="settingComponentName"
-          class="main-setting-content-component"
+        v-if="settingComponentName"
+        :is="settingComponentName"
+        class="main-setting-content-component"
       ></component>
     </template>
     <template #collapse-button>
       <div
-          class="collapse-button el-icon-d-arrow-right"
-          @click="settingComponentName = ''"
+        class="collapse-button el-icon-d-arrow-right"
+        @click="settingComponentName = ''"
       ></div>
     </template>
   </collapse>
 </template>
 
 <script>
-import {defineComponent, ref} from "vue";
+import { defineComponent, ref } from "vue";
 import mainTitle from "./mainComponents/title.vue";
 import mainTitleSetting from "./settingComponents/tileSetting.vue";
 import mainQrSetting from "./settingComponents/qrSetting.vue";

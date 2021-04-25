@@ -31,12 +31,14 @@ class Handler {
         if (style.position !== 'absolute' && style.position !== 'fixed') {
             this.el.style.position = 'relative'
         }
+        if (style.zIndex === 'auto') {
+            this.el.style.zIndex = 1
+        }
         const { instance, refShade } = CreateHoverShadeInstance(this)
         this.refShade = refShade
         const vInstance = createVNode(instance)
         render(vInstance, document.createElement('div'))
-        // 这样可以实现嵌套
-        this.el.insertBefore(vInstance.el, this.el.firstChild)
+        this.el.appendChild(vInstance.el)
         this.instance = vInstance
         this.el.handlerInstance = this
         return this
