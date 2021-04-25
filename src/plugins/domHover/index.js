@@ -16,6 +16,7 @@ class Handler {
             Handler.activedHandlerInstance = null
         }
     }
+
     constructor(el, binding) {
         this.el = el
         this.binding = binding
@@ -29,6 +30,7 @@ class Handler {
         this.isActive = (el.handlerInstance && el.handlerInstance.isActive) || false
         this.refShade = null
     }
+
     insertShadeDom() {
         const style = this.originStyle = window.getComputedStyle(this.el)
         this.el.classList.add('domHover')
@@ -47,15 +49,20 @@ class Handler {
         this.el.handlerInstance = this
         return this
     }
+
     hideShadeDom() {
         this.props.showShade = false
         this.props.showBorder = false
         this.props.showDeleteButton = false
     }
-    hideParentShadeDom() {
+
+    hideParentShadeDom(targetParentNode) {
+        if (!targetParentNode) {
+            targetParentNode = document.body
+        }
         try {
             let parentNode = this.el.parentNode
-            while (parentNode && parentNode !== this.binding.instance.$el && parentNode && parentNode !== document.body) {
+            while (parentNode && parentNode !== targetParentNode) {
                 if (parentNode.classList.contains('domHover')) {
                     parentNode.handlerInstance.hideShadeDom()
                 }
@@ -65,9 +72,11 @@ class Handler {
             console.error('hideShadeDom Error')
         }
     }
+
     removeShadeDom() {
         this.el.removeChild(this.instance.el)
     }
+
     // 判断激活节点和事件对象的节点关系：
     getActivedElPosition(event) {
         const nodePosition = event.target.compareDocumentPosition(Handler.activedHandlerInstance.el)
@@ -75,6 +84,7 @@ class Handler {
         Handler.activedElPosition.isEventTargetChild = Boolean(nodePosition & Node.DOCUMENT_POSITION_CONTAINED_BY)
         return Handler.activedElPosition
     }
+
     registerEvent() {
         this.onMouseEnter()
         this.onMouseLeave()
@@ -82,11 +92,13 @@ class Handler {
         this.onBlur()
         return this
     }
+
     handlerMouseEnter() {
         this.props.showShade = !this.binding.modifiers.noShade
         this.props.showBorder = true
         this.props.showDeleteButton = true
     }
+
     handlerMouseLeave(event) {
         if (Handler.activedHandlerInstance) {
             const p = this.getActivedElPosition(event)
@@ -97,15 +109,20 @@ class Handler {
             this.hideShadeDom()
         }
     }
+
     handlerMouseClick(event) {
         if (Handler.activedHandlerInstance) {
             if (Handler.activedHandlerInstance === this) {
                 return
             }
             const p = this.getActivedElPosition(event)
-            if (p.isEventTargetChild || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
+            // if (p.isEventTargetChild || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
+            //     Handler.activedHandlerInstance.hideShadeDom()
+            //     Handler.activedHandlerInstance.hideParentShadeDom()
+            //     Handler.activedHandlerInstance.isActive = false
+            // }
+            if (p.isEventTargetChild) {
                 Handler.activedHandlerInstance.hideShadeDom()
-                Handler.activedHandlerInstance.hideParentShadeDom()
                 Handler.activedHandlerInstance.isActive = false
             }
         }
@@ -116,32 +133,38 @@ class Handler {
         }
         event.stopPropagation()
     }
+
     handlerDelete() {
         this.removeShadeDom()
         if (this.binding.arg && typeof this.binding.arg.afterHoverDelete === 'function') {
             this.binding.arg.afterHoverDelete()
         }
     }
+
     onMouseEnter() {
         this.el.addEventListener('mouseenter', () => {
             this.handlerMouseEnter()
         })
     }
+
     // 如果存在嵌套：鼠标移动到外层元素是，外层元素可点击。鼠标移到内层元素时，外层元素不可点击，同时内层元素可点击。
     onMouseLeave() {
         this.el.addEventListener('mouseleave', (event) => {
             this.handlerMouseLeave(event)
         })
     }
+
     onMouseClick() {
         this.el.addEventListener('click', (event) => {
             this.handlerMouseClick(event)
         })
     }
+
     onBlur() {
         document.body.addEventListener('click', Handler.blurHandler, false)
     }
 }
+
 /**
  * 使用：
  * v-domHover.noShade="setPropertyComponent"
