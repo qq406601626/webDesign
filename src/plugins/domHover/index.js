@@ -78,7 +78,7 @@ class Handler {
         }
     }
 
-    handlerMouseClick() {
+    handlerMouseClick(event) {
         if (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this) {
             Handler.activedHandlerInstance.hideShadeDom()
         }
@@ -87,6 +87,7 @@ class Handler {
         if (this.binding.arg && typeof this.binding.arg.afterHoverClick === 'function') {
             this.binding.arg.afterHoverClick(this.binding.value)
         }
+        event.stopPropagation()
 
     }
     handlerDelete() {
@@ -109,8 +110,8 @@ class Handler {
     }
 
     onMouseClick() {
-        this.el.addEventListener('click', () => {
-            this.handlerMouseClick()
+        this.el.addEventListener('click', (event) => {
+            this.handlerMouseClick(event)
         })
     }
 
