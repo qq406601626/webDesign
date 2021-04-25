@@ -48,9 +48,6 @@ class Handler {
         this.props.showShade = false
         this.props.showBorder = false
         this.props.showDeleteButton = false
-        if (Handler.activedHandlerInstance) {
-            Handler.activedHandlerInstance.isActive = false
-        }
     }
 
     removeShadeDom() {
@@ -70,9 +67,14 @@ class Handler {
         this.props.showDeleteButton = true
     }
 
-    handlerMouseLeave() {
-        if (this.isActive) {
-
+    handlerMouseLeave(event) {
+        if (Handler.activedHandlerInstance) {
+            const nodePosition = event.target.compareDocumentPosition(Handler.activedHandlerInstance.el)
+            if ((nodePosition & Node.DOCUMENT_POSITION_PRECEDING) || (nodePosition & Node.DOCUMENT_POSITION_FOLLOWING)) {
+                this.hideShadeDom()
+            } else if ((nodePosition & Node.DOCUMENT_POSITION_CONTAINS) || (nodePosition & Node.DOCUMENT_POSITION_CONTAINED_BY) && (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this)) {
+                this.hideShadeDom()
+            }
         } else {
             this.hideShadeDom()
         }
@@ -81,6 +83,8 @@ class Handler {
     handlerMouseClick(event) {
         if (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this) {
             Handler.activedHandlerInstance.hideShadeDom()
+            Handler.activedHandlerInstance.isActive = false
+
         }
         this.isActive = true
         Handler.activedHandlerInstance = this
@@ -104,8 +108,8 @@ class Handler {
     }
     // 如果存在嵌套：鼠标移动到外层元素是，外层元素可点击。鼠标移到内层元素时，外层元素不可点击，同时内层元素可点击。
     onMouseLeave() {
-        this.el.addEventListener('mouseleave', () => {
-            this.handlerMouseLeave()
+        this.el.addEventListener('mouseleave', (event) => {
+            this.handlerMouseLeave(event)
         })
     }
 
