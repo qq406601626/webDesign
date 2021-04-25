@@ -1,13 +1,17 @@
 <template>
-  settingComponentName:{{ settingComponentName }}
-  <main-title
-    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"
-  ></main-title>
-  <el-button
-    class="msg"
-    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"
-    >msg
-  </el-button>
+<!--  settingComponentName:{{ settingComponentName }}-->
+<!--  <main-title-->
+<!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"-->
+<!--  ></main-title>-->
+<!--  <el-button-->
+<!--    class="msg"-->
+<!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"-->
+<!--    >msg-->
+<!--  </el-button>-->
+
+
+  <div v-domHover.noShade style="width: 200px;height: 200px">11111111111</div>
+  <div v-domHover.noShade style="width: 200px;height: 200px">2222222222</div>
 
   <div
     v-domHover.noShade
