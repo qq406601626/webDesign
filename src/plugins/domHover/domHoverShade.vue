@@ -66,6 +66,7 @@ export default CreateHoverShadeInstance;
   .shade {
     background: rgba(0, 0, 0, 0.5);
     height: 100%;
+    // pointer-events: none;
   }
 
   .border {

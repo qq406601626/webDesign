@@ -81,10 +81,27 @@ class Handler {
     }
 
     handlerMouseClick(event) {
-        if (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this) {
-            Handler.activedHandlerInstance.hideShadeDom()
-            Handler.activedHandlerInstance.isActive = false
-
+        // if (Handler.activedHandlerInstance && Handler.activedHandlerInstance !== this) {
+        //     Handler.activedHandlerInstance.hideShadeDom()
+        //     Handler.activedHandlerInstance.isActive = false
+        // }
+        if (Handler.activedHandlerInstance) {
+            console.log(event.target)
+            console.log(Handler.activedHandlerInstance.el)
+            console.log( event.target.compareDocumentPosition(Handler.activedHandlerInstance.el))
+            // const nodePosition = event.target.compareDocumentPosition(Handler.activedHandlerInstance.el)
+            // if ((nodePosition & Node.DOCUMENT_POSITION_PRECEDING) || (nodePosition & Node.DOCUMENT_POSITION_FOLLOWING)) {
+            //     console.log(1111)
+            //     Handler.activedHandlerInstance.hideShadeDom()
+            //     Handler.activedHandlerInstance.isActive = false
+            // } else if (nodePosition & Node.DOCUMENT_POSITION_CONTAINS) {
+            //     console.log(2222)
+            //     Handler.activedHandlerInstance.isActive = false
+            // } else if (nodePosition & Node.DOCUMENT_POSITION_CONTAINED_BY) {
+            //     console.log(3333)
+            //     Handler.activedHandlerInstance.hideShadeDom()
+            //     Handler.activedHandlerInstance.isActive = false
+            // }
         }
         this.isActive = true
         Handler.activedHandlerInstance = this
