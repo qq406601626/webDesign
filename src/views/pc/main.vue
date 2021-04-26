@@ -40,8 +40,7 @@
   </div> -->
 
   <el-button @click="changeList">changeList</el-button>
-
-  <div v-domHover v-for="(listItem, index) in list" :key="listItem">
+  <div v-domHover v-for="(listItem, index) in list" :key="index">
     <div>{{ listItem }}</div>
   </div>
 
