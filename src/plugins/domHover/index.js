@@ -1,4 +1,4 @@
-import {render, createVNode, reactive} from 'vue'
+import { render, createVNode, reactive,nextTick } from 'vue'
 import CreateHoverShadeInstance from './domHoverShade.vue'
 
 class Handler {
@@ -40,7 +40,7 @@ class Handler {
         if (style.zIndex === 'auto') {
             this.el.style.zIndex = 1
         }
-        const {instance, refShade} = CreateHoverShadeInstance(this)
+        const { instance, refShade } = CreateHoverShadeInstance(this)
         this.refShade = refShade
         const vInstance = createVNode(instance)
         render(vInstance, document.createElement('div'))
@@ -89,7 +89,8 @@ class Handler {
         this.onMouseEnter()
         this.onMouseLeave()
         this.onMouseClick()
-        this.onBlur()
+        // todo
+        // this.onBlur()
         return this
     }
 
@@ -118,7 +119,7 @@ class Handler {
             const p = this.getActivedElPosition(this.el)
             if (p.isEventTargetChild || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
                 Handler.activedHandlerInstance.hideShadeDom()
-                Handler.activedHandlerInstance.hideParentShadeDom(p.isEventTargetChild?this.el:null)
+                Handler.activedHandlerInstance.hideParentShadeDom(p.isEventTargetChild ? this.el : null)
                 Handler.activedHandlerInstance.isActive = false
             }
         }

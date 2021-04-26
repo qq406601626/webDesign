@@ -1,16 +1,15 @@
 <template>
-<!--  settingComponentName:{{ settingComponentName }}-->
-<!--  <main-title-->
-<!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"-->
-<!--  ></main-title>-->
-<!--  <el-button-->
-<!--    class="msg"-->
-<!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"-->
-<!--    >msg-->
-<!--  </el-button>-->
+  <!--  settingComponentName:{{ settingComponentName }}-->
+  <!--  <main-title-->
+  <!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"-->
+  <!--  ></main-title>-->
+  <!--  <el-button-->
+  <!--    class="msg"-->
+  <!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"-->
+  <!--    >msg-->
+  <!--  </el-button>-->
 
-
-  <div v-domHover.noShade style="width: 200px;height: 200px">11111111111</div>
+  <!-- <div v-domHover.noShade style="width: 200px;height: 200px">11111111111</div>
   <div v-domHover.noShade style="width: 200px;height: 200px">2222222222</div>
 
   <div
@@ -38,8 +37,13 @@
       ></div>
     </div>
     <div>2222222222222</div>
+  </div> -->
+
+  <el-button @click="changeList">changeList</el-button>
+
+  <div v-domHover v-for="(listItem, index) in list" :key="listItem">
+    <div>{{ listItem }}</div>
   </div>
-  <!-- <div v-domHover>1111</div> -->
 
   <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">
     <template #default>
@@ -83,6 +87,7 @@ export default defineComponent({
   data() {
     return {
       settingComponentName: "",
+      list: ["11111111111111"],
     };
   },
 
@@ -93,6 +98,9 @@ export default defineComponent({
     afterHoverClick(componentName) {
       this.settingComponentName = componentName;
     },
+    changeList(){
+      this.list.unshift('qqqqqqqqqq')
+    }
   },
 });
 </script>
