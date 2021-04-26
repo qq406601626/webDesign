@@ -78,8 +78,8 @@ class Handler {
     }
 
     // 判断激活节点和事件对象的节点关系：
-    getActivedElPosition(event) {
-        const nodePosition = event.target.compareDocumentPosition(Handler.activedHandlerInstance.el)
+    getActivedElPosition(targetEl) {
+        const nodePosition = targetEl.compareDocumentPosition(Handler.activedHandlerInstance.el)
         Handler.activedElPosition.isEventTargetParent = Boolean(nodePosition & Node.DOCUMENT_POSITION_CONTAINS)
         Handler.activedElPosition.isEventTargetChild = Boolean(nodePosition & Node.DOCUMENT_POSITION_CONTAINED_BY)
         return Handler.activedElPosition
@@ -99,9 +99,9 @@ class Handler {
         this.props.showDeleteButton = true
     }
 
-    handlerMouseLeave(event) {
+    handlerMouseLeave() {
         if (Handler.activedHandlerInstance) {
-            const p = this.getActivedElPosition(event)
+            const p = this.getActivedElPosition(this.el)
             if (p.isEventTargetParent || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
                 this.hideShadeDom()
             }
@@ -115,14 +115,10 @@ class Handler {
             if (Handler.activedHandlerInstance === this) {
                 return
             }
-            const p = this.getActivedElPosition(event)
-            // if (p.isEventTargetChild || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
-            //     Handler.activedHandlerInstance.hideShadeDom()
-            //     Handler.activedHandlerInstance.hideParentShadeDom()
-            //     Handler.activedHandlerInstance.isActive = false
-            // }
-            if (p.isEventTargetChild) {
+            const p = this.getActivedElPosition(this.el)
+            if (p.isEventTargetChild || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
                 Handler.activedHandlerInstance.hideShadeDom()
+                Handler.activedHandlerInstance.hideParentShadeDom(p.isEventTargetChild?this.el:null)
                 Handler.activedHandlerInstance.isActive = false
             }
         }
