@@ -1,4 +1,4 @@
-import { render, createVNode, reactive,nextTick } from 'vue'
+import {render, createVNode, reactive, nextTick} from 'vue'
 import CreateHoverShadeInstance from './domHoverShade.vue'
 
 class Handler {
@@ -8,10 +8,18 @@ class Handler {
         isEventTargetChild: false,
     }
     static blurHandler = function (event) {
-        const domHover = event.target.closest('.domHover')
+        const domHover = event.target.closest('.domHover,.collapse')
         if (!domHover && Handler.activedHandlerInstance) {
             Handler.activedHandlerInstance.hideShadeDom()
             Handler.activedHandlerInstance.hideParentShadeDom()
+            try {
+                if (Handler.activedHandlerInstance.binding.arg && typeof Handler.activedHandlerInstance.binding.arg.afterHoverBlur === 'function') {
+                    Handler.activedHandlerInstance.binding.arg.afterHoverBlur()
+                }
+            } catch (e) {
+                console.error(e)
+            }
+
             Handler.activedHandlerInstance.isActive = false
             Handler.activedHandlerInstance = null
         }
@@ -40,7 +48,7 @@ class Handler {
         if (style.zIndex === 'auto') {
             this.el.style.zIndex = 1
         }
-        const { instance, refShade } = CreateHoverShadeInstance(this)
+        const {instance, refShade} = CreateHoverShadeInstance(this)
         this.refShade = refShade
         const vInstance = createVNode(instance)
         render(vInstance, document.createElement('div'))
@@ -90,7 +98,7 @@ class Handler {
         this.onMouseLeave()
         this.onMouseClick()
         // todo
-        // this.onBlur()
+        this.onBlur()
         return this
     }
 

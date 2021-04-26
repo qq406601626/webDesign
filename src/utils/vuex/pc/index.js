@@ -43,7 +43,7 @@ export default {
                 show:true
             },
             // 消息内容
-            msgContent:{
+            msg:{
                 show:true
             },
             // 底部版权

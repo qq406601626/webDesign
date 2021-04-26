@@ -1,86 +1,111 @@
 <template>
-  
-    <el-button @click="changeLoading">changeLoading</el-button>
-  <el-button @click="changeCollapse">changeCollapse</el-button>
-  <el-button @click="changeHoverDomShowHide">changeHoverDomShowHide</el-button>
-  <el-button @click="changeText">changeText</el-button>
-  <div style="width: 200px; height: 200px; background: red" v-loading="loading">
-    11111111111111111111111
-  </div>
+  <!--  settingComponentName:{{ settingComponentName }}-->
+  <!--  <main-title-->
+  <!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainTitleSetting'"-->
+  <!--  ></main-title>-->
+  <!--  <el-button-->
+  <!--    class="msg"-->
+  <!--    v-domHover:[{afterHoverClick,afterHoverDelete}].noShade="'mainMsgSetting'"-->
+  <!--    >msg-->
+  <!--  </el-button>-->
+
+  <!-- <div v-domHover.noShade style="width: 200px;height: 200px">11111111111</div>
+  <div v-domHover.noShade style="width: 200px;height: 200px">2222222222</div>
 
   <div
-    v-domHover
-    class="aaaaaaa"
-    style="width: 200px; height: 200px; background: red"
-  >
-    aaaaaaaaaaaaaaaaa
-  </div>
-  <div
     v-domHover.noShade
-    class="bbbbbbb"
-    style="width: 200px; height: 200px; background: red"
+    class="wraper"
+    style="
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: green;
+    "
   >
-    bbbbbbbbbb
+    <div>11111111111</div>
+    <div
+      v-domHover
+      class="inner"
+      style="width: 100px; height: 100px; background: gold"
+    >
+      <div
+        v-domHover
+        class="inner2"
+        style="width: 50px; height: 50px; background: blue"
+      ></div>
+    </div>
+    <div>2222222222222</div>
+  </div> -->
+
+  <el-button @click="changeList">changeList</el-button>
+  <div v-domHover v-for="(listItem, index) in list" :key="index">
+    <div>{{ listItem }}</div>
   </div>
-  <div  v-domHover :id="text" style="width: 200px; height: 200px; background: red">
-    <div>text:{{text}}</div>
-  </div>
- 
-  <collapse :visible="showCollapse" class="aside-content-wrap">
+
+  <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">
     <template #default>
-      <!-- <component
-        :is="currentSelectModule.asideModule.component"
-        class="aside-content-component"
-      ></component> -->
-      <div class="aside-content-component">111111111111111</div>
+      <component
+          v-if="settingComponentName"
+          :is="settingComponentName"
+          class="main-setting-content-component"
+      ></component>
     </template>
     <template #collapse-button>
-      <div class="collapse-button el-icon-d-arrow-right"></div>
+      <div
+          class="collapse-button el-icon-d-arrow-right"
+          @click="settingComponentName = ''"
+      ></div>
     </template>
   </collapse>
 </template>
 
 <script>
-// import * as a from "vue";
-// console.log("----", a);
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref } from "vue";
+import mainTitle from "./mainComponents/title.vue";
+import mainTitleSetting from "./settingComponents/tileSetting.vue";
+import mainQrSetting from "./settingComponents/qrSetting.vue";
+import mainMsgSetting from "./settingComponents/msgSetting.vue";
 import Collapse from "@/components/collapse.vue";
+
 export default defineComponent({
   components: {
     Collapse,
+    mainTitle,
+    mainTitleSetting,
+    mainQrSetting,
+    mainMsgSetting,
   },
   setup() {
-    const loading = ref(false);
-    const showCollapse = ref(false);
-    const hoverDomShow = ref(false);
-    const text = ref("aaaaaaaaaaaa");
+    const settingComponentName = ref(undefined);
     return {
-      loading,
-      showCollapse,
-      hoverDomShow,
-      text,
+      settingComponentName,
     };
   },
-  methods: {
-    changeCollapse() {
-      this.showCollapse = !this.show;
-    },
-    changeHoverDomShowHide() {
-      this.hoverDomShow = !this.hoverDomShow;
-    },
-    changeText() {
-      this.text = "bbbbbbbbbbbbbb";
-    },
-    changeLoading() {
-      this.loading = !this.loading;
-    },
+  data() {
+    return {
+      settingComponentName: "",
+      list: ["11111111111111"],
+    };
   },
-  mounted() {},
+
+  methods: {
+    afterHoverDelete() {
+      this.settingComponentName = "";
+    },
+    afterHoverClick(componentName) {
+      this.settingComponentName = componentName;
+    },
+    changeList(){
+      this.list.unshift('qqqqqqqqqq')
+    }
+  },
 });
 </script>
 
 <style lang="scss" scoped>
-.aside-content-wrap {
+.main-setting-content-wrap {
   height: 100%;
   position: absolute;
   right: 0;
@@ -89,12 +114,15 @@ export default defineComponent({
   z-index: 2;
   background: rgb(62, 63, 65);
 
-  .aside-content-component {
+  .main-setting-content-component {
     width: 440px;
     height: 100%;
     padding: 20px;
     box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
+
   .collapse-button {
     width: 10px;
     height: 100%;
@@ -107,10 +135,12 @@ export default defineComponent({
     align-items: center;
     font-size: 12px;
     cursor: pointer;
+
     &:hover {
       background: #333333;
       color: #a6a9ad;
     }
+
     &:before {
       transform: translateX(-1px) scale(0.8);
     }
