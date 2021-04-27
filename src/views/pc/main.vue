@@ -1,35 +1,41 @@
 <template>
   <main-title
-      v-domHover:[{afterHoverClick,afterHoverDelete,afterHoverBlur}].noShade="'mainTitleSetting'"
+    v-domHover:[{afterHoverClick,afterHoverDelete,afterHoverBlur}].noShade="
+      'mainTitleSetting'
+    "
   ></main-title>
   <el-row type="flex" align="middle" :gutter="60" style="height: 100%">
     <el-col :offset="1" :span="18">
-      <main-msg v-domHover:[{afterHoverClick,afterHoverBlur}]="'mainMsgSetting'"></main-msg>
+      <main-msg
+        v-domHover:[{afterHoverClick,afterHoverBlur}]="'mainMsgSetting'"
+      ></main-msg>
     </el-col>
     <el-col :span="4">
-      <div style="height: 300px;background: green"></div>
+      <div style="height: 300px; background: green"></div>
     </el-col>
   </el-row>
 
   <collapse :visible="!!settingComponentName" class="main-setting-content-wrap">
     <template #default>
-      <component
+      <transition name="el-fade-in-linear" mode="out-in">
+        <component
           v-if="settingComponentName"
           :is="settingComponentName"
           class="main-setting-content-component"
-      ></component>
+        ></component>
+      </transition>
     </template>
     <template #collapse-button>
       <div
-          class="collapse-button el-icon-d-arrow-right"
-          @click="settingComponentName = ''"
+        class="collapse-button el-icon-d-arrow-right"
+        @click="settingComponentName = ''"
       ></div>
     </template>
   </collapse>
 </template>
 
 <script>
-import {defineComponent, ref} from "vue";
+import { defineComponent, ref } from "vue";
 import mainTitle from "./mainComponents/title.vue";
 import mainTitleSetting from "./settingComponents/tileSetting.vue";
 import mainMsg from "./mainComponents/msg.vue";

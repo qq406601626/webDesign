@@ -22,13 +22,18 @@
     class="aside-content-wrap"
   >
     <template #default>
-      <component
-        :is="currentSelectModule.asideModule.component"
-        class="aside-content-component"
-      ></component>
+      <transition name="el-fade-in-linear" mode="out-in">
+        <component
+          :is="currentSelectModule.asideModule.component"
+          class="aside-content-component"
+        ></component>
+      </transition>
     </template>
     <template #collapse-button>
-      <div @click="currentSelectModule.asideModule = originSelectModule" class="collapse-button el-icon-d-arrow-left"></div>
+      <div
+        @click="currentSelectModule.asideModule = originSelectModule"
+        class="collapse-button el-icon-d-arrow-left"
+      ></div>
     </template>
   </collapse>
 </template>
