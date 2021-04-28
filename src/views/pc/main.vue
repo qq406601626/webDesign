@@ -1,17 +1,16 @@
 <template>
   <main-title
-    v-domHover:[{afterHoverClick,afterHoverDelete,afterHoverBlur}].noShade="
-      'mainTitleSetting'
-    "
+      v-domHover:[{afterHoverClick,afterHoverDelete,afterHoverBlur}]="'mainTitleSetting'"
   ></main-title>
-  <el-row type="flex" align="middle" :gutter="60" style="height: 100%">
-    <el-col :offset="1" :span="16">
+  <el-row type="flex" align="middle" style="height: 100%">
+    <el-col :span="15" :offset="2">
       <main-msg
-        v-domHover:[{afterHoverClick,afterHoverBlur}]="'mainMsgSetting'"
+          v-domHover:[{afterHoverClick,afterHoverBlur}]="'mainMsgSetting'"
       ></main-msg>
     </el-col>
-    <el-col :span="4" :offset="1">
-      <div style="height: 300px; background: green"></div>
+    <el-col :span="3" :offset="2" v-domHover:[{afterHoverClick,afterHoverDelete,afterHoverBlur}]="'mainQrSetting'">
+      <img src="/src/views/pc/mainComponents/img/qr.png" alt="" style="width: 100%">
+      <el-row type="flex" justify="center" style="color:#ffffff;line-height: 30px">扫描二维码参与互动大屏幕</el-row>
     </el-col>
   </el-row>
 
@@ -19,23 +18,23 @@
     <template #default>
       <transition name="el-fade-in-linear" mode="out-in">
         <component
-          v-if="settingComponentName"
-          :is="settingComponentName"
-          class="main-setting-content-component"
+            v-if="settingComponentName"
+            :is="settingComponentName"
+            class="main-setting-content-component"
         ></component>
       </transition>
     </template>
     <template #collapse-button>
       <div
-        class="collapse-button el-icon-d-arrow-right"
-        @click="settingComponentName = ''"
+          class="collapse-button el-icon-d-arrow-right"
+          @click="settingComponentName = ''"
       ></div>
     </template>
   </collapse>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import {defineComponent, ref} from "vue";
 import mainTitle from "./mainComponents/title.vue";
 import mainTitleSetting from "./settingComponents/tileSetting.vue";
 import mainMsg from "./mainComponents/msg.vue";
