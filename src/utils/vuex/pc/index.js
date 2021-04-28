@@ -44,7 +44,9 @@ export default {
             },
             // 消息内容
             msg:{
-                show:true
+                show:true,
+                backgroundColor:'#445dc8',
+                count:3
             },
             // 底部版权
             copyright:{

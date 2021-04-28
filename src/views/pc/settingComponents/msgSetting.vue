@@ -30,7 +30,7 @@
     <el-row type="flex" align="middle" :gutter="0">
       <el-col :span="leftColSpan">消息条数</el-col>
       <el-col :span="rightColSpan" style="padding-left:7px">
-        <el-slider :min="3" :max="5" :marks="_newsCountMarks"></el-slider>
+        <el-slider v-model="PC.main.msg.count" :min="3" :max="5" :marks="_newsCountMarks"></el-slider>
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="0">

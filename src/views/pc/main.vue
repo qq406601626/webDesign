@@ -5,12 +5,12 @@
     "
   ></main-title>
   <el-row type="flex" align="middle" :gutter="60" style="height: 100%">
-    <el-col :offset="1" :span="18">
+    <el-col :offset="1" :span="16">
       <main-msg
         v-domHover:[{afterHoverClick,afterHoverBlur}]="'mainMsgSetting'"
       ></main-msg>
     </el-col>
-    <el-col :span="4">
+    <el-col :span="4" :offset="1">
       <div style="height: 300px; background: green"></div>
     </el-col>
   </el-row>
