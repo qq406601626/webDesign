@@ -17,8 +17,10 @@ const router = createRouter({
                 },
                 {
                     path: 'mobile',
-                    component: () => import('@/views/mobile/index.vue'),
-                },
+                    components: {
+                        default: () => import('@/views/mobile/main.vue'),
+                        aside: () => import('@/views/mobile/aside.vue'),
+                    }                },
                 {
                     path: 'test',
                     component: () => import('@/views/test.vue'),
