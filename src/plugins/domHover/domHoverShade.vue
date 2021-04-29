@@ -1,5 +1,5 @@
 <script>
-import { toRefs, ref, withDirectives, h, vShow } from "vue";
+import { toRefs, ref, withDirectives, h, vShow, Transition } from "vue";
 
 const CreateHoverShadeInstance = (handlerCtx) => {
   const refShade = ref(null);
@@ -11,12 +11,19 @@ const CreateHoverShadeInstance = (handlerCtx) => {
       };
     },
     render() {
-      const $shade = withDirectives(
-        h("div", {
-          class: ["shade"],
-          ref: "refShade",
-        }),
-        [[vShow, this.showShade]]
+      const $shade = h(
+        Transition,
+        { name: "el-fade-in-linear" },
+        {
+          default: (props) =>
+            withDirectives(
+              h("div", {
+                class: ["shade"],
+                ref: "refShade",
+              }),
+              [[vShow, this.showShade]]
+            ),
+        }
       );
       const $border = withDirectives(
         h("div", {

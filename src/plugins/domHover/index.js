@@ -121,9 +121,10 @@ class Handler {
 
     handlerMouseClick(event) {
         if (Handler.activedHandlerInstance) {
-            if (Handler.activedHandlerInstance === this) {
-                return
-            }
+            // todo : if there are some bugs, to fix;
+            // if (Handler.activedHandlerInstance === this) {
+            //     return
+            // }
             const p = this.getActivedElPosition(this.el)
             if (p.isEventTargetChild || (!p.isEventTargetParent && !p.isEventTargetChild && Handler.activedHandlerInstance !== this)) {
                 Handler.activedHandlerInstance.hideShadeDom()

@@ -16,8 +16,7 @@
     >
     </aside-module>
   </el-space>
-  <el-button @click="print">change</el-button>
-
+  <el-button @click="change">change</el-button>
 </template>
 
 <script>
@@ -27,13 +26,13 @@ import { AsideClass } from "@/scripts";
 import AsideModule from "../commonComponents/asideModule.vue";
 import Theme from "./asideComponents/theme.vue";
 import Assembly from "./asideComponents/assembly.vue";
-import {originSelectModule,currentSelectModule} from './state'
+import { originSelectModule, currentSelectModule,show } from "./state";
 export default defineComponent({
   components: {
     Collapse,
     AsideModule,
     Theme,
-    Assembly
+    Assembly,
   },
   setup() {
     const spacer = h("div", {
@@ -53,11 +52,12 @@ export default defineComponent({
       asideModuleList,
       originSelectModule,
       currentSelectModule,
+      show,
     };
   },
   methods: {
-    print() {
-      console.log(this.currentSelectModule);
+    change() {
+      this.show = !this.show;
     },
   },
 });
