@@ -16,7 +16,6 @@
     >
     </aside-module>
   </el-space>
-  <el-button @click="change">change</el-button>
 </template>
 
 <script>
@@ -26,7 +25,7 @@ import { AsideClass } from "@/scripts";
 import AsideModule from "../commonComponents/asideModule.vue";
 import Theme from "./asideComponents/theme.vue";
 import Assembly from "./asideComponents/assembly.vue";
-import { originSelectModule, currentSelectModule,show } from "./state";
+import { originSelectModule, currentSelectModule } from "./state";
 export default defineComponent({
   components: {
     Collapse,
@@ -52,13 +51,9 @@ export default defineComponent({
       asideModuleList,
       originSelectModule,
       currentSelectModule,
-      show,
     };
   },
   methods: {
-    change() {
-      this.show = !this.show;
-    },
   },
 });
 </script>
