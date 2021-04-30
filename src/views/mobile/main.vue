@@ -17,9 +17,8 @@
           </template>
         </collapse>-->
     <el-row type="flex" justify="center" align="middle" style="height: 100%; flex-grow: 1">
-      <div class="phone-coat">
+      <div class="phone-coat" v-aspectRatio="9/16">
         <!--<main-content ></main-content>-->
-        <div style="background: red;" v-aspectRatio="16/9"></div>
       </div>
     </el-row>
     <!--    <collapse :visible="show2">
@@ -65,7 +64,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .phone-coat {
   width: 375px;
-  height: 667px;
   background: linear-gradient(180deg, #282828, #282828);
   padding: 40px 20px 50px;
   position: relative;
