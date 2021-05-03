@@ -20,15 +20,13 @@
 
 <script>
 import { defineComponent, reactive, markRaw, h } from "vue";
-import Collapse from "@/components/collapse.vue";
 import { AsideClass } from "@/scripts";
 import AsideModule from "../commonComponents/asideModule.vue";
 import Theme from "./asideComponents/theme.vue";
 import Assembly from "./asideComponents/assembly.vue";
-import { originSelectModule, currentSelectModule } from "./state";
+import {originSelectModule,currentSelectModule} from './state'
 export default defineComponent({
   components: {
-    Collapse,
     AsideModule,
     Theme,
     Assembly,
@@ -50,7 +48,7 @@ export default defineComponent({
       spacer,
       asideModuleList,
       originSelectModule,
-      currentSelectModule,
+      currentSelectModule
     };
   },
   methods: {
@@ -59,40 +57,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.aside-content-wrap {
-  height: 100%;
-  //position: absolute;
-  //left: 100%;
-  //top: 0;
-  //margin-left: 1px;
-  //z-index: 2;
-  background: rgb(62, 63, 65);
 
-  .aside-content-component {
-    width: 440px;
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .collapse-button {
-    width: 10px;
-    height: 100%;
-    background: #2a2a2a;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    color: #909399;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    cursor: pointer;
-    &:hover {
-      background: #333333;
-      color: #a6a9ad;
-    }
-    &:before {
-      transform: translateX(-1px) scale(0.8);
-    }
-  }
-}
 </style>

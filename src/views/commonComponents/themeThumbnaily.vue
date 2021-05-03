@@ -3,7 +3,8 @@
     <img :src="thumbnaily.thumbnail" alt="" class="thumbnaily-img">
     <div class="tag desc-box">
       <div class="label">{{ thumbnaily.label }}</div>
-      <el-tag size="mini" type="danger" effect="dark" style="margin-left: 10px">动态限免</el-tag>
+      <el-tag v-if="thumbnaily.isFreeNow" size="mini" type="danger" effect="dark" style="margin-left: 10px">动态限免
+      </el-tag>
     </div>
     <div class="tag new">NEW</div>
     <div class="tag checked">
@@ -14,15 +15,15 @@
 
 <script>
 import {defineComponent} from "vue";
-import {ThemeThumbnailyClass,} from "@/scripts";
+import {PcThemeThumbnailyClass,} from "@/scripts";
 
 export default defineComponent({
   props: {
     thumbnaily: {
-      type: ThemeThumbnailyClass,
+      type: PcThemeThumbnailyClass,
       required: true
     },
-    active:Boolean
+    active: Boolean
   },
   setup() {
 
@@ -60,7 +61,12 @@ export default defineComponent({
       padding: 6px 0;
       background: rgba(0, 0, 0, 0.7);
       z-index: 1;
+
+      .label {
+        color: #ffffff;
+      }
     }
+
 
     &.new {
       font-size: 12px;

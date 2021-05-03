@@ -72,9 +72,9 @@ import {defineComponent, reactive, computed} from "vue";
 import {
   ThemeLayoutClass,
   ThemeClassifyClass,
-  ThemeThumbnailyClass,
+  PcThemeThumbnailyClass,
 } from "@/scripts";
-import themeThumbnaily from './themeComponents/themeThumbnaily.vue'
+import themeThumbnaily from '../../commonComponents/themeThumbnaily.vue'
 
 export default defineComponent({
   components: {themeThumbnaily},
@@ -105,9 +105,9 @@ export default defineComponent({
     const thumbnailyData = reactive({
       value: '',
       list: [
-        new ThemeThumbnailyClass("niuniandaji", "牛年大吉", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
-        new ThemeThumbnailyClass("aidehunli", "爱的婚礼", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
-        new ThemeThumbnailyClass("zhongguofeng", "中国风", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
+        new PcThemeThumbnailyClass("niuniandaji", "牛年大吉", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
+        new PcThemeThumbnailyClass("aidehunli", "爱的婚礼", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
+        new PcThemeThumbnailyClass("zhongguofeng", "中国风", ThemeLayoutClass.RightContent, [ThemeClassifyClass.HunLiHunQing]),
       ],
       thumbnailyList: computed(() => {
         return thumbnailyData.list.filter(thumbnailyItem => {

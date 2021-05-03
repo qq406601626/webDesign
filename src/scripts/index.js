@@ -6,17 +6,20 @@ class AsideClass {
         this.component = component
     }
 }
+
 /** pc-主题-布局*/
 class ThemeLayoutClass {
     static FullContent = 1
     static RightContent = 2
     static LeftContent = 3
     static iconBaseUrl = '/src/views/pc/asideComponents/img/'
+
     constructor(value, icon) {
         this.value = value
         this.icon = `${ThemeLayoutClass.iconBaseUrl}/${icon}`
     }
 }
+
 /** pc-主题-分类*/
 class ThemeClassifyClass {
     static All = 1
@@ -29,13 +32,15 @@ class ThemeClassifyClass {
     static ShangYeCuXiao = 8
     static PaiDui = 9
     static DongManYouXi = 10
+
     constructor(label, value) {
         this.label = label
         this.value = value
     }
 }
+
 /** pc-主题-主题缩略图*/
-class ThemeThumbnailyClass {
+class PcThemeThumbnailyClass {
     constructor(name, label, layout, classify = [], isNew = false, isFreeNow = false,) {
         this.name = name
         this.label = label
@@ -47,11 +52,28 @@ class ThemeThumbnailyClass {
         this.isFreeNow = isFreeNow
     }
 }
-/** pc-界面元素*/
-class ElemetsSwitchClass{
-    constructor(label,property){
-        this.label=label
-        this.property=property
+
+/** mobile-主题-主题缩略图*/
+class MobileThemeThumbnailyClass extends PcThemeThumbnailyClass {
+    constructor(name, label, layout, classify = [], isNew = false, isFreeNow = false,) {
+        super(name, label, layout, classify, isNew, isFreeNow,);
+        this.thumbnail = `/src/views/mobile/asideComponents/img/${name}/thumbnail.png`
     }
 }
-export { AsideClass, ThemeLayoutClass, ThemeClassifyClass, ThemeThumbnailyClass,ElemetsSwitchClass }
+
+/** pc-界面元素*/
+class ElemetsSwitchClass {
+    constructor(label, property) {
+        this.label = label
+        this.property = property
+    }
+}
+
+export {
+    AsideClass,
+    ThemeLayoutClass,
+    ThemeClassifyClass,
+    PcThemeThumbnailyClass,
+    ElemetsSwitchClass,
+    MobileThemeThumbnailyClass
+}
