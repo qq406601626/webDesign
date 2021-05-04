@@ -67,8 +67,8 @@ export default defineComponent({
     afterHoverDelete() {
       this.settingComponentName = "";
     },
-    afterHoverClick(componentName) {
-      this.settingComponentName = componentName;
+    afterHoverClick(settingComponentName) {
+      this.settingComponentName = settingComponentName;
     },
     afterHoverBlur() {
       this.settingComponentName = "";

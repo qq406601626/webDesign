@@ -1,9 +1,19 @@
-import {reactive} from "vue";
+import {reactive,ref} from "vue";
 import {AsideClass} from "@/scripts";
 
-const originSelectModule = new AsideClass("", "", null);
-const currentSelectModule = reactive({asideModule: originSelectModule});
+const asideOriginSelectModule = new AsideClass("", "", null);
+const asideCurrentSelectModule = reactive({asideModule: asideOriginSelectModule});
+const mainCurrentSelectModule = ref(null)
+const mainCurrentSettingComponentName = ref('')
+const asideState={
+    originSelectModule:asideOriginSelectModule,
+    currentSelectModule:asideCurrentSelectModule
+}
+const mainState = {
+    currentSelectModule:mainCurrentSelectModule,
+    currentSettingComponentName:mainCurrentSettingComponentName,
+}
 export {
-    originSelectModule,
-    currentSelectModule,
+    asideState,
+    mainState
 }

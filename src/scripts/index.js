@@ -61,6 +61,7 @@ class MobileThemeThumbnailyClass extends PcThemeThumbnailyClass {
     }
 }
 
+
 /** pc-界面元素*/
 class ElemetsSwitchClass {
     constructor(label, property) {
@@ -69,11 +70,32 @@ class ElemetsSwitchClass {
     }
 }
 
+/** mobile-content-component*/
+class  MobileModuleClass {
+    constructor(componentName,children=[]) {
+        this.componentName = componentName
+        this.children = children
+    }
+}
+class MobileSwiperClass extends  MobileModuleClass{
+    constructor(imgList=[],title='',time='',showTime=true,fontColor='') {
+        super('swiper');
+        this.imgList=imgList
+        this.title = title
+        this.time = time
+        this.showTime = showTime
+        this.fontColor = fontColor
+    }
+}
+
+
+
 export {
     AsideClass,
     ThemeLayoutClass,
     ThemeClassifyClass,
     PcThemeThumbnailyClass,
     ElemetsSwitchClass,
-    MobileThemeThumbnailyClass
+    MobileThemeThumbnailyClass,
+    MobileSwiperClass
 }
