@@ -11,8 +11,8 @@
       v-for="(asideModule, index) in asideModuleList"
       :key="index"
       :module="asideModule"
-      :active="currentSelectModule.asideModule === asideModule"
-      @click="currentSelectModule.asideModule = asideModule"
+      :active="asideState.currentSelectModule.asideModule === asideModule"
+      @click="asideState.currentSelectModule.asideModule = asideModule"
     >
     </aside-module>
   </el-space>
@@ -24,7 +24,7 @@ import { AsideClass } from "@/scripts";
 import AsideModule from "../commonComponents/asideModule.vue";
 import Theme from "./asideComponents/theme.vue";
 import Assembly from "./asideComponents/assembly.vue";
-import {originSelectModule,currentSelectModule} from './state'
+import {asideState} from './state'
 export default defineComponent({
   components: {
     AsideModule,
@@ -47,8 +47,7 @@ export default defineComponent({
     return {
       spacer,
       asideModuleList,
-      originSelectModule,
-      currentSelectModule
+      asideState
     };
   },
   methods: {
