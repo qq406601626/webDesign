@@ -1,7 +1,7 @@
 <template>
   <div class="theme-container">
     <!-- 缩略图  -->
-    <el-row type="flex" style="height: 100%;padding: 0 10px;align-content: flex-start;font-size: 0" :gutter="20">
+    <el-row type="flex" class="thumbnaily-box" :gutter="20">
       <el-col
           v-for="(thumbnailyItem) in thumbnailyData.list"
           :key="thumbnailyItem.name"
@@ -46,4 +46,14 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+.theme-container {
+  .thumbnaily-box {
+    height: 100%;
+    align-content: flex-start;
+    font-size: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
 </style>
