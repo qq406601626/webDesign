@@ -18,7 +18,7 @@
     <el-row type="flex" align="top" :gutter="gutter">
       <el-col :span="6">直播封面：</el-col>
       <el-col :span="18">
-        <el-row type="flex" align="bottom" style="margin-bottom:20px;">
+        <el-row type="flex" align="bottom" style="margin-bottom: 20px">
           <el-upload
             action=""
             list-type="picture-card"
@@ -35,23 +35,65 @@
           </el-upload>
           <el-button type="primary" size="mini">恢复默认</el-button>
         </el-row>
-            <el-alert
-            type="warning"
-            :closable="false"
-            title=" 建议尺寸：300x168，小于200k　　　　图片格式：png/jpg"
+        <el-alert
+          type="warning"
+          :closable="false"
+          title=" 建议尺寸：300x168，小于200k　　　　图片格式：png/jpg"
         ></el-alert>
       </el-col>
     </el-row>
-       <el-row type="flex" align="top" :gutter="gutter">
+    <el-row type="flex" align="top" :gutter="gutter">
       <el-col :span="6">悬浮弹幕：</el-col>
       <el-col :span="18">
-         <el-switch
-          active-value="Y"
-          inactive-value="N"
-          active-text="ON"
-          inactive-text="OFF"
-          :width="50"
-        ></el-switch>
+        <el-space
+          direction="vertical"
+          alignment="stretch"
+          :size="[0, 20]"
+          style="width: 100%"
+        >
+          <el-row type="flex" align="middle">
+            <el-switch
+              v-model="aaaaaa"
+              active-text="ON"
+              inactive-text="OFF"
+              :width="50"
+            ></el-switch>
+          </el-row>
+          <transition name="el-fade-in">
+            <el-row
+              v-show="aaaaaa"
+              type="flex"
+              align="middle"
+              :gutter="0"
+              key="backgroundColor"
+            >
+              <el-col :span="9" style="font-size:14px;">弹幕背景色：</el-col>
+              <el-col :span="15">
+                <el-color-picker
+                  show-alpha
+                  :predefine="['#ff0000', '#00ff00', '#0000ff']"
+                ></el-color-picker>
+              </el-col>
+            </el-row>
+          </transition>
+          <transition name="el-fade-in">
+            <el-row
+              v-show="aaaaaa"
+              type="flex"
+              align="middle"
+              :gutter="0"
+              key="fontColor"
+            >
+              <el-col :span="9" style="font-size:14px;">弹幕文字色：</el-col>
+              <el-col :span="15">
+                <el-color-picker
+                  show-alpha
+                  :predefine="['#ff0000', '#00ff00', '#0000ff']"
+                ></el-color-picker>
+              </el-col>
+            </el-row>
+          </transition>
+        </el-space>
       </el-col>
     </el-row>
   </el-space>
@@ -69,6 +111,11 @@ export default defineComponent({
       fileList: [],
       mainState,
       imageUrl: "/src/views/mobile/mainComponents/img/classicsblue/banner.png",
+    };
+  },
+  data() {
+    return {
+      aaaaaa: true,
     };
   },
   methods: {},

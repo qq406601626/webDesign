@@ -33,7 +33,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .swiper-container {
-  background: red;
   position: relative;
 
   :deep .el-carousel {
