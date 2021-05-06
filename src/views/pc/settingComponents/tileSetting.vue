@@ -86,7 +86,7 @@ export default defineComponent({
   color: #ffffff;
 
   .title-brand {
-    ::v-deep .el-upload {
+    :deep .el-upload {
       width: 40px;
       height: 40px;
       font-size: 0;

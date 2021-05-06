@@ -89,12 +89,12 @@ export default defineComponent({
   color: #ffffff;
 
   .swiper-upload {
-    ::v-deep .el-upload-list__item {
+    :deep .el-upload-list__item {
       width: 176px;
       height: 99px;
     }
 
-    ::v-deep .el-upload--picture-card {
+    :deep .el-upload--picture-card {
       width: 176px;
       height: 99px;
       display: flex;

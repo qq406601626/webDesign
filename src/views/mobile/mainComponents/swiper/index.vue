@@ -36,7 +36,7 @@ export default defineComponent({
   background: red;
   position: relative;
 
-  ::v-deep .el-carousel {
+  :deep .el-carousel {
     height: 100%;
     z-index: 0;
 

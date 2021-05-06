@@ -71,20 +71,27 @@ class ElemetsSwitchClass {
 }
 
 /** mobile-content-component*/
-class  MobileModuleClass {
-    constructor(componentName,children=[]) {
+class MobileModuleClass {
+    constructor(componentName, children = []) {
         this.componentName = componentName
         this.children = children
     }
 }
-class MobileSwiperClass extends  MobileModuleClass{
-    constructor(imgList=[],title='',time='',showTime=true,fontColor='') {
+class MobileSwiperClass extends MobileModuleClass {
+    constructor(imgList = [], title = '', time = '', showTime = true, fontColor = '') {
         super('swiper');
-        this.imgList=imgList
+        this.imgList = imgList
         this.title = title
         this.time = time
         this.showTime = showTime
         this.fontColor = fontColor
+    }
+}
+class MobileBroadcastClass extends MobileModuleClass {
+    constructor(poster = '', isShowDanmu = false) {
+        super('broadcast');
+        this.poster = poster
+        this.isShowDanmu = isShowDanmu
     }
 }
 
@@ -97,5 +104,6 @@ export {
     PcThemeThumbnailyClass,
     ElemetsSwitchClass,
     MobileThemeThumbnailyClass,
-    MobileSwiperClass
+    MobileSwiperClass,
+    MobileBroadcastClass
 }

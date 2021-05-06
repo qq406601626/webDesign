@@ -1,4 +1,4 @@
-import {MobileSwiperClass} from '@/scripts/index.js'
+import {MobileSwiperClass,MobileBroadcastClass} from '@/scripts/index.js'
 
 export default {
     namespaced: true,
@@ -12,7 +12,8 @@ export default {
             content: {
                 children: [
                     // todo 祛class
-                    new MobileSwiperClass(['/src/views/mobile/mainComponents/img/classicsblue/banner.png','/src/views/mobile/mainComponents/img/welcomenew/banner.png'],'abc')
+                    // new MobileSwiperClass(['/src/views/mobile/mainComponents/img/classicsblue/banner.png','/src/views/mobile/mainComponents/img/welcomenew/banner.png'],'abc')
+                    new MobileBroadcastClass()
                 ]
             }
         }

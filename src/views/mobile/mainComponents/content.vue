@@ -1,27 +1,33 @@
 <template>
-  <template v-for="childModule in  parentModule.children">
-    <component :is="childModule.componentName"
-               :module-data="childModule"
-               v-domHover:[{afterHoverClick:curryingHoverClick(childModule)}]="'swiperSetting'">
+  <!-- todo 修改key为id -->
+  <template v-for="(childModule, index) in parentModule.children" :key="index">
+    <component
+      :is="childModule.componentName"
+      :module-data="childModule"
+      v-domHover:[{afterHoverClick:curryingHoverClick(childModule)}]="
+        'broadcastSetting'
+      "
+    >
     </component>
   </template>
 </template>
 
 <script>
-import {defineComponent} from "vue";
-import swiper from './swiper/index.vue'
-import {mainState} from '../state.js'
+import { defineComponent } from "vue";
+import swiper from "./swiper/index.vue";
+import broadcast from "./broadcast/index.vue";
+import { mainState } from "../state.js";
 
 export default defineComponent({
-  components: {swiper},
+  components: { swiper,broadcast },
   props: {
     parentModule: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
-    return {}
+    return {};
   },
 
   methods: {
@@ -30,12 +36,12 @@ export default defineComponent({
     },
     curryingHoverClick(childModule) {
       return (settingComponentName) => {
-        this.afterHoverClick(settingComponentName, childModule)
-      }
+        this.afterHoverClick(settingComponentName, childModule);
+      };
     },
     afterHoverClick(settingComponentName, childModule) {
-      mainState.currentSelectModule.value = childModule
-      mainState.currentSettingComponentName.value = settingComponentName
+      mainState.currentSelectModule.value = childModule;
+      mainState.currentSettingComponentName.value = settingComponentName;
     },
     afterHoverBlur() {
       this.settingComponentName = "";

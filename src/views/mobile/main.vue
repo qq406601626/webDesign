@@ -47,10 +47,11 @@ import Collapse from "@/components/collapse.vue";
 import MainContent from './mainComponents/content.vue'
 import Theme from './asideComponents/theme.vue'
 import swiperSetting from './settingComponents/swiperSetting.vue'
+import broadcastSetting from './settingComponents/broadcastSetting.vue'
 import {asideState, mainState} from './state'
 
 export default defineComponent({
-  components: {Collapse, MainContent, Theme, swiperSetting},
+  components: {Collapse, MainContent, Theme, swiperSetting,broadcastSetting},
   setup() {
     return {
       asideState,
