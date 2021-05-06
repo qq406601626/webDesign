@@ -5,7 +5,7 @@
       :is="childModule.componentName"
       :module-data="childModule"
       v-domHover:[{afterHoverClick:curryingHoverClick(childModule)}]="
-        'broadcastSetting'
+        'tabSetting'
       "
     >
     </component>
@@ -16,10 +16,11 @@
 import { defineComponent } from "vue";
 import swiper from "./swiper/index.vue";
 import broadcast from "./broadcast/index.vue";
+import tab from "./tab/index.vue";
 import { mainState } from "../state.js";
 
 export default defineComponent({
-  components: { swiper,broadcast },
+  components: { swiper,broadcast,tab },
   props: {
     parentModule: {
       type: Object,

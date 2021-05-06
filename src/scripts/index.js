@@ -94,7 +94,23 @@ class MobileBroadcastClass extends MobileModuleClass {
         this.isShowDanmu = isShowDanmu
     }
 }
-
+class MobileTabClass extends MobileModuleClass {
+    constructor(bgUrl = '', activeTitleColor = '', staticTitleColor = '', tabList = []) {
+        super('tab');
+        this.bgUrl = bgUrl
+        this.activeTitleColor = activeTitleColor
+        this.staticTitleColor = staticTitleColor
+        this.tabList = tabList
+    }
+}
+class MobileTabItemClass extends MobileModuleClass {
+    constructor(label = '', name = '', type = '') {
+        super('tabItem');
+        this.label = label
+        this.name = name
+        this.type = type
+    }
+}
 
 
 export {
@@ -105,5 +121,7 @@ export {
     ElemetsSwitchClass,
     MobileThemeThumbnailyClass,
     MobileSwiperClass,
-    MobileBroadcastClass
+    MobileBroadcastClass,
+    MobileTabClass,
+    MobileTabItemClass
 }

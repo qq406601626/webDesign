@@ -44,14 +44,16 @@
 <script>
 import {defineComponent, reactive} from "vue";
 import Collapse from "@/components/collapse.vue";
-import MainContent from './mainComponents/content.vue'
+// import MainContent from './mainComponents/content.vue'
 import Theme from './asideComponents/theme.vue'
 import swiperSetting from './settingComponents/swiperSetting.vue'
 import broadcastSetting from './settingComponents/broadcastSetting.vue'
+import tabSetting from './settingComponents/tabSetting.vue'
 import {asideState, mainState} from './state'
 
 export default defineComponent({
-  components: {Collapse, MainContent, Theme, swiperSetting,broadcastSetting},
+  // components: {Collapse, MainContent, Theme, swiperSetting,broadcastSetting,tabSetting},
+  components: {Collapse, Theme, swiperSetting,broadcastSetting,tabSetting},
   setup() {
     return {
       asideState,

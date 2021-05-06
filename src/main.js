@@ -7,6 +7,8 @@ import App from './App.vue'
 import proxyInstance from './plugins/vuexProxy'
 import domHover from './plugins/domHover'
 import aspectRatio from './plugins/aspectRatio'
+import MainContent from '@/views/mobile/mainComponents/content.vue'
 const instance = createApp(App)
 instance.use(router).use(store).use(proxyInstance,store).use(domHover).use(aspectRatio).use(ElementPlus, {size: 'medium ', zIndex: 3000})
+instance.component('MainContent',MainContent)
 instance.mount('#app')
