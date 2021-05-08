@@ -9,14 +9,17 @@
       标签项设置
     </el-row>
     <el-divider style="margin-bottom: 0; margin-top: 0"></el-divider>
+    <tabItemSettingContent></tabItemSettingContent>
   </el-space>
 </template>
 
 <script>
 import { defineComponent, reactive } from "vue";
+import tabItemSettingContent from "./settingContent.vue";
 import { mainState } from "@/views/mobile/state.js";
 
 export default defineComponent({
+  components:{tabItemSettingContent},
   props: {},
   setup() {
     return {

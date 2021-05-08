@@ -10,8 +10,8 @@
     </el-row>
     <el-divider style="margin-bottom: 0; margin-top: 0"></el-divider>
     <el-row type="flex" align="top" :gutter="gutter">
-      <el-col :span="6">图片：</el-col>
-      <el-col :span="18">
+      <el-col :span="7">图片：</el-col>
+      <el-col :span="17">
         <el-row type="flex" align="middle" style="margin-bottom: 20px">
           <el-upload
             action=""
@@ -37,8 +37,8 @@
       </el-col>
     </el-row>
     <el-row type="flex" align="middle" :gutter="gutter">
-      <el-col :span="6">标签颜色：</el-col>
-      <el-col :span="18">
+      <el-col :span="7">标签颜色：</el-col>
+      <el-col :span="17">
         <el-row type="flex" align="middle">
           <el-col :span="12">
             <el-row type="flex" align="middle">
@@ -61,14 +61,17 @@
         </el-row>
       </el-col>
     </el-row>
+    <tabItemSettingContent></tabItemSettingContent>
   </el-space>
 </template>
 
 <script>
 import { defineComponent, reactive } from "vue";
+import tabItemSettingContent from "./tabitemSetting/settingContent.vue";
 import { mainState } from "@/views/mobile/state.js";
 
 export default defineComponent({
+  components:{tabItemSettingContent},
   props: {},
   setup() {
     return {
